@@ -3,7 +3,6 @@ function solution(id_pw, db) {
 
   const id = id_pw[0];
   const pw = id_pw[1];
-
   db.map((list) => {
     // 1. id,pw 값이 db에 존재할 경우
     if (list.includes(id) && list.includes(pw)) return (answer = 'login');
