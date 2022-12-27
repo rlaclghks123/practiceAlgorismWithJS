@@ -18,6 +18,8 @@
 - [아스키코드](#아스키코드)
 - [최대공약수-최소공배수](#최대공약수-최소공배수)
 - [진수변환](#진수변환)
+- [소수 구하기](#소수-구하기)
+- [서로 다른 n개 중 m개](#서로-다른-n개-중-m개)
 
 # 약수
 
@@ -107,4 +109,60 @@ const decimal = bin.parseInt(bin,2)
 // 2. 10진수를 2,8진수로 변환 toString(진법)
 const decimal = 30;
 const bin = decimal.toString(2);
+```
+
+# 소수 구하기
+
+- 소인수분해 참조
+
+```JS
+//true는 소수가 아닌경우, false는 소수인경우
+
+function primeNumber(n) {
+  const check = Array.from({ length: n }, () => false);
+  const arr = [];
+  // 0,1은 소수가 아니기 때문에 true로 해준다.
+  check[0] = true;
+  check[1] = true;
+
+  for (let i = 2; i * i <= n; i++) {
+    if (check[i]) continue; //소수가 아닌경우는 continue;
+
+    // 어떤수의 배수는 약수를 가지기 때문에 소수가 아니다. 따라서 어떤수의 배수는 모두 true로 바꿔준다.
+    for (let j = i + i; j <= n; j += i) {
+      check[j] = true;
+    }
+  }
+
+  // false인 경우 소수이므로 arr배열에 담아준다.
+  for (let i = 0; i <= n; i++) {
+    if (!check[i]) {
+      arr.push(i);
+    }
+  }
+  return arr;
+}
+```
+
+# 서로 다른 n개 중 m개
+
+- 구슬을 나누는 경우의수 참조
+- factorial은 너무 큰수가 되므로 BigInt를 사용해준다.
+
+```JS
+// 아래와 같이 구해준다.
+
+//     n!
+// ㅡㅡㅡㅡㅡㅡㅡㅡ
+// (n-m)! * m!
+
+function factorial(n) {
+  let temp = BigInt(1);
+  for (let i = 1; i <= n; i++) {
+    temp *= BigInt(i);
+  }
+  return temp;
+}
+
+
 ```
