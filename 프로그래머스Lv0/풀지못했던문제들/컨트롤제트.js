@@ -19,12 +19,25 @@ function solution(s) {
   return answer;
 }
 
+// 틀린이유 : 문자열을 잘 다루지 못했었으며, 풀지못한 문제들중 비슷한 형태가 여러개 있다.
+// 다시풀기
+function solution(s) {
+  var answer = 0;
+  let split = s.split(' ');
+
+  while (split.includes('Z')) {
+    split.splice(split.indexOf('Z') - 1, 2);
+  }
+  answer = split.reduce((acc, cur) => acc + Number(cur), 0);
+  return answer;
+}
+
 solution('1 2 Z 3'); //	4
-console.log(' ');
+
 solution('10 20 30 40'); //	100
-console.log(' ');
+
 solution('10 Z 20 Z 1'); //	1
-console.log(' ');
+
 solution('10 Z 20 Z'); //	0
-// console.log(' ');
-// solution('-1 -2 -3 Z'); //	-3
+
+solution('-1 -2 -3 Z'); //	-3

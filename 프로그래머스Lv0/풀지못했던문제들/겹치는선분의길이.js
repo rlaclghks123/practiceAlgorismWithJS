@@ -19,3 +19,42 @@ function solution(lines) {
   // 4. answer를 출력한다.
   return answer;
 }
+
+// 틀린이유. 어떻게 접근할지를 몰랐었고 스택에 넣고 이런 저런방법으로 고민해봤으나 스스로 정한 시간인 40분을 넘겼기 때문에 다른분들의 답을 확인했다.
+
+// 다시 풀어보기
+function solution(lines) {
+  var answer = 0;
+
+  const arr = Array.from({ length: 200 }, () => 0);
+
+  for (let i = 0; i < lines.length; i++) {
+    for (let j = lines[i][0] + 100; j < lines[i][1] + 100; j++) {
+      arr[j]++;
+    }
+  }
+
+  arr.forEach((item) => {
+    if (item >= 2) answer++;
+  });
+
+  return answer;
+}
+
+solution([
+  [0, 1],
+  [2, 5],
+  [3, 9],
+]); // 2
+
+solution([
+  [-1, 1],
+  [1, 3],
+  [3, 9],
+]); // 0
+
+solution([
+  [0, 5],
+  [3, 9],
+  [1, 10],
+]); // 8

@@ -20,6 +20,21 @@ function solution(chicken) {
   return service;
 }
 
+// 틀린이유: 시간내에 풀지못했다.
+// 다시풀기
+
+function solution(chicken) {
+  var answer = 0;
+  let coupon = chicken;
+  let service = 0;
+
+  while (coupon >= 10) {
+    service += Math.floor(coupon / 10);
+    coupon = Math.floor(coupon / 10 + (coupon % 10));
+  }
+
+  return service;
+}
 solution(100); // 11
 
 solution(1081); // 120
