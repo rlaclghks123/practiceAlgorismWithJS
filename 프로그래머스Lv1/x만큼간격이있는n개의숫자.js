@@ -3,10 +3,11 @@
 function solution(x, n) {
   var answer = [];
 
+  // 1. 1부터 n개를 반복하여 answer에 x * i를 담는다.
   for (let i = 1; i <= n; i++) {
     answer.push(x * i);
   }
-  console.log(answer);
+
   return answer;
 }
 
