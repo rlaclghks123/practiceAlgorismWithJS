@@ -9,11 +9,17 @@
 - [x] 배열
 - [x] List
 - [x] Stack
+- [x] Queue
 
 # 꿀팁 저장소
 
 - `인덱스 i, j에 대해 i ≠ j이면 arr[i] ≠ arr[j] 입니다.` => 배열의 순서가 바뀌면 안된다.
+
 - `문자열이 한개만 사용된다` => indexOf(문자), lastIndexOf(문자)가 같아야 된다
+
+- `아스키코드로 변환 : charCodeAt(0)`, `아스키코드를 문자로 변환 : String.fromCharCode(item))`
+
+- `제곱근이 정수면 약수의 개수가 홀수이다.` `Number.isInteger(Math.sqrt(i)) // 홀수`
 
 # 나만의 알고리즘
 
