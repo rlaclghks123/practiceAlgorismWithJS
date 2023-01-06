@@ -1,73 +1,151 @@
 class Node {
-  constructor(element) {
-    this.element = element;
-    this.next = null; // 양방향 이므로 다음값, 이전값을 가진다.
+  constructor(data) {
+    this.data = data;
     this.prev = null;
+    this.next = null;
   }
 }
 
 class DoublyLinkedList {
   constructor() {
-    this.head = new Node('head');
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
   }
 
-  // 노드를 찾아준다.
-  find(item) {
-    let currNode = this.head;
-    while (currNode.element !== item) {
-      currNode = currNode.next;
-    }
-    return currNode;
+  isEmpty() {
+    return this.size == 0;
   }
 
-  // 추가
-  insert(newElement, item) {
-    let newNode = new Node(newElement);
-    let startNode = this.find(item);
-
-    // Head인 경우
-    if (startNode.next == null) {
-      newNode.next = null;
-      newNode.prev = startNode;
-      startNode.next = newNode;
+  addHead(value) {
+    //if list is empty
+    if (this.isEmpty()) {
+      this.head = new Node(value);
+      this.tail = this.head;
+    } else {
+      let newNode = new Node(value);
+      newNode.next = this.head;
+      this.head.prev = newNode;
+      this.head = newNode;
     }
-    // Head가 아닌경우
-    else {
-      newNode.next = startNode.next;
-      newNode.prev = startNode;
-      startNode.next.prev = newNode;
-      startNode.next = newNode;
+    this.size++;
+  }
+
+  addTail(value) {
+    //if list is empty
+    if (this.isEmpty()) {
+      this.tail = new Node(value);
+      this.head = this.tail;
+    } else {
+      let newNode = new Node(value);
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.size++;
+  }
+
+  removeByValue(value) {
+    let current = this.head; //Using tail instead of head also works.
+
+    //if head is target
+    if (current.data == value) {
+      this.head = current.next;
+      this.size--;
+    } else {
+      let prev = current;
+      while (current.next) {
+        if (current.data == value) {
+          prev.next = current.next;
+          current = current.next;
+          break;
+        }
+        prev = current;
+        current = current.next;
+      }
+
+      if (current.data == value) prev.next = null;
+      this.size--;
     }
   }
 
-  // 제거
-  remove(item) {
-    let currNode = this.find(item);
-    if (currNode.next !== null) {
-      currNode.prev.next = currNode.next;
-      currNode.next.prev = currNode.prev;
-      currNode.next = null;
-      currNode.prev = null;
+  removeHead() {
+    if (this.isEmpty()) return null;
+
+    let data = this.head.data;
+
+    //if head(=tail) is target
+    if (this.head == this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+      this.head.prev = null;
     }
+    this.size--;
+    return data;
   }
 
-  // 연결리스트를 출력한다.
-  toString() {
-    let array = [];
-    let currNode = this.head;
-    while (currNode.next !== null) {
-      array.push(currNode.next.element);
-      currNode = currNode.next;
+  removeTail() {
+    if (this.isEmpty()) return null;
+
+    let data = this.tail.data;
+
+    //if head(=tail) is target
+    if (this.head == this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
     }
-    return array;
+    this.size--;
+    return data;
+  }
+
+  findStartingHead(value) {
+    let current = this.head;
+    while (current.next) {
+      if (current.data == value) return true;
+      current = current.next;
+    }
+    return false;
+  }
+
+  findStartingTail(value) {
+    let current = this.tail;
+    while (current.prev) {
+      if (current.data == value) return true;
+      current = current.prev;
+    }
+    return false;
+  }
+  print() {
+    let result = '';
+    let current = this.head;
+    if (current === null) return null;
+    while (current.next) {
+      result += `${current.data} -> `;
+      current = current.next;
+    }
+    result += current.data;
+    console.log(result);
   }
 }
 
-const linkedList = new DoublyLinkedList();
-linkedList.insert('Seoul', 'head'); // Seoul을 head로 지정한다. ['Seoul']
-linkedList.insert('Busan', 'Seoul'); // Seoul다음에 Busan을 추가한다 ['Seoul','Busan']
-linkedList.insert('Daegu', 'Seoul'); // Seoul 다음에 Daegu를 추가한다. ['Seoul','Daegu','Busan']
-linkedList.insert('Incheon', 'Busan'); // Busan 다음에 Incheon을 추가한다. ['Seoul','Daegu','Busan','Incheon']
-linkedList.remove('Busan'); // Busan을 제거한다. ['Seoul','Daegu','Incheon']
+let doubleLinkedList = new DoublyLinkedList();
 
-console.log(linkedList.toString()); // ['Seoul','Daegu','Incheon']
+for (let i = 1; i <= 5; i++) doubleLinkedList.addHead(i);
+doubleLinkedList.print(); //5->4->3->2->1
+
+doubleLinkedList.removeHead();
+doubleLinkedList.print(); //4->3->2->1
+
+doubleLinkedList.removeByValue(3);
+
+doubleLinkedList.print(); //4->2->1
+doubleLinkedList.removeTail();
+doubleLinkedList.print(); //4->2
+
+doubleLinkedList.addTail(1);
+doubleLinkedList.print(); //4->2->1

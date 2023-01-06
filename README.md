@@ -10,6 +10,7 @@
 - [x] List
 - [x] Stack
 - [x] Queue
+- [x] Dequeue
 
 # 꿀팁 저장소
 

@@ -1,80 +1,112 @@
 class Node {
-  constructor(element) {
-    this.element = element;
+  constructor(item) {
+    this.data = item;
     this.next = null;
   }
 }
 
 class SingleLinkedList {
   constructor() {
-    this.head = new Node('head');
+    this.head = null;
+    this.size = 0;
   }
 
-  // 새로운 값을 맨뒤에 추가한다.
-  append(newElement) {
-    let newNode = new Node(newElement); //새로운 노드 생성
-    let startNode = this.head; // 시작 노드
+  isEmpty() {
+    return this.size == 0;
+  }
 
-    // 다음값이 존재한다면 다음노드를 시작노드로 바꿔준다.
-    while (startNode.next != null) {
-      startNode = startNode.next;
+  add(item) {
+    if (this.isEmpty()) {
+      this.head = new Node(item);
+      this.size++;
+    } else {
+      let newNode = this.head;
+      this.head = new Node(item);
+      this.head.next = newNode;
+      this.size++;
     }
-
-    // 다음값이 존재하지 않는다면 새로운 노드를 만들어준다.
-    startNode.next = newNode;
   }
 
-  // 새로운 값을 원하는 위치에 추가한다.
-  insert(newElement, item) {
-    let newNode = new Node(newElement); //새로운 노드 생성
-    let startNode = this.find(item); // 삽입할 위치의 노드 찾기
-    newNode.next = startNode.next; // 찾은 노드가 가리키는 노드를 새로은 노드가 가리키기
-    startNode.next = newNode; // 찾은 노드는 이제부터 새로운 노드를 가리키도록 하기
-  }
+  removeByValue(item) {
+    let current = this.head;
 
-  // 노드를 제거한다.
-  remove(item) {
-    let preNode = this.findPrevious(item); // 삭제할 노드를 가리키는 노드 찾기
-    preNode.next = preNode.next.next; // 삭제할 노드 다음 노드를 가리키도록 하기
-  }
+    if (current.data == item) {
+      this.head = current.next;
+      this.size--;
+    } else {
+      let prev = current;
+      let error = true;
 
-  // 노드를 찾는다.
-  find(item) {
-    let currNode = this.head;
-    while (currNode.element !== item) {
-      currNode = currNode.next;
+      while (current.next) {
+        if (current.data == item) {
+          prev.next = current.next;
+          current = current.next;
+          error = false;
+          break;
+        }
+        prev = current;
+        current = current.next;
+      }
+      if (current.data == item) {
+        prev.next = null;
+        error = false;
+      }
+
+      if (error) console.log(`There is no ${item}`);
+      else this.size--;
     }
-    return currNode;
   }
 
-  // 이전 노드를 찾는다.
-  findPrevious(item) {
-    let currNode = this.head;
-    while (currNode.next != null && currNode.next.element !== item) {
-      currNode = currNode.next;
+  removeHead() {
+    let item = null;
+    if (this.head != null) {
+      item = this.head.data;
+      this.head = this.head.next;
+      this.size--;
     }
-    return currNode;
+    return item;
   }
 
-  // 연결리스트를 출력한다.
-  toString() {
-    let array = [];
-    let currNode = this.head;
-    while (currNode.next !== null) {
-      array.push(currNode.next.element);
-      currNode = currNode.next;
+  search(value) {
+    let current = this.head;
+    if (current === null) return null;
+    while (current.next) {
+      if (current.data == value) return true;
+      current = current.next;
     }
-    return array;
+    return false;
+  }
+
+  print() {
+    let result = '';
+    let current = this.head;
+
+    while (current.next) {
+      result += `${current.data} `;
+      current = current.next;
+    }
+    result += current.data;
+
+    console.log(result);
   }
 }
 
-let linkedList = new SingleLinkedList();
-linkedList.insert('A', 'head'); // A를 head로 지정 ['A']
-linkedList.insert('B', 'A'); // A가 B를 가리킨다. ['A','B']
-linkedList.insert('C', 'B'); // C가 B를 가리킨다. ['A','B','C']
-linkedList.remove('B'); // B를 제거한다. ['A','C']
-linkedList.append('D'); // D를 마지막에 추가한다.  ['A','C','D']
-linkedList.append('E');
-['A', 'C', 'D', 'E'];
+let singleLinkedList = new SingleLinkedList();
 
-console.log(linkedList.toString()); // ['A','C','D','E']
+console.log(singleLinkedList.isEmpty()); // true 출력
+singleLinkedList.add(1); // 1 추가
+
+singleLinkedList.print(); // 1 출력
+console.log(singleLinkedList.isEmpty()); // false 출력
+
+singleLinkedList.add(2); // 2 추가
+singleLinkedList.print(); // 2 1 출력
+singleLinkedList.removeHead(); // head인 2 제거
+
+singleLinkedList.print(); // 1 출력
+singleLinkedList.add(2); // 2 추가
+singleLinkedList.add(3); // 3 추가
+singleLinkedList.removeByValue(2);
+singleLinkedList.print(); // 3 1 출력
+
+singleLinkedList.removeByValue(2); // There is no 2 출력
