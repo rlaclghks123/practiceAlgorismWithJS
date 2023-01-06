@@ -118,7 +118,8 @@ const lcm = a*b / gcd(a,b);
 ```JS
 // 1. 2,8진수를 10진수로 변환  parseInt(숫자값, 진법)
 const bin = 1001 //2진수
-const decimal = bin.parseInt(bin,2)
+const decimal = parseInt(bin,2);
+
 
 // 2. 10진수를 2,8진수로 변환 toString(진법)
 const decimal = 30;
