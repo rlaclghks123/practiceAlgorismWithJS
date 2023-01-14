@@ -27,7 +27,8 @@ function solution(my_string) {
   split.forEach((item, i) => {
     if (item === '+') {
       answer += Number(split[i + 1]);
-    } else if (item === '-') {
+    }
+    if (item === '-') {
       answer -= Number(split[i + 1]);
     }
   });

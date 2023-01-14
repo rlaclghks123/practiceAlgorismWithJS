@@ -34,20 +34,21 @@
 // 틀린이유: +로 split하고 이렇게 저렇게 시도해봤으나 40분을 넘겨 다른분의 코드를 확인
 // 문자열을 다루는 실력이 부족했었던것같다.
 // 다시풀기
+
 function solution(polynomial) {
   var answer = [];
-  const split = polynomial.split(' + ');
 
-  const linearTerm = split
+  const arr = polynomial.split(' + ');
+
+  let xNum = arr
     .filter((item) => item.includes('x'))
-    .map((item) => item.replace('x', '') || 1)
-    .reduce((cur, acc) => cur + Number(acc), 0);
+    .map((item) => item.replace('x', '') || '1')
+    .reduce((acc, cur) => acc + parseInt(cur, 10), 0);
 
-  const constTerm = split.filter((item) => !isNaN(item)).reduce((acc, cur) => acc + Number(cur), 0);
+  const num = arr.filter((item) => !isNaN(item)).reduce((acc, cur) => acc + parseInt(cur, 10), 0);
 
-  if (linearTerm) answer.push(linearTerm === 1 ? 'x' : `${linearTerm}x`);
-  if (constTerm) answer.push(constTerm === 0 ? '' : constTerm);
-
+  if (xNum) answer.push(xNum === 1 ? 'x' : `${xNum}x`);
+  if (num) answer.push(num);
   return answer.join(' + ');
 }
 

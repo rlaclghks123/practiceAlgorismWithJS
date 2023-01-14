@@ -33,6 +33,17 @@ function solution(numlist, n) {
   return answer;
 }
 
+function solution(numlist, n) {
+  var answer = [];
+  numlist.sort((a, b) => {
+    const [aGap, bGap] = [Math.abs(a - n), Math.abs(b - n)];
+    if (aGap === bGap) return b - a;
+    return aGap - bGap;
+  });
+  console.log(numlist);
+  return answer;
+}
+
 solution([1, 2, 3, 4, 5, 6], 4); // [4, 5, 3, 6, 2, 1]
 
 solution([10000, 20, 36, 47, 40, 6, 10, 7000], 30); // [36, 40, 20, 47, 10, 6, 7000, 10000]

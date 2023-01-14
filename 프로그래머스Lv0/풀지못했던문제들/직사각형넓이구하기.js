@@ -20,11 +20,13 @@
 // 다시풀기
 function solution(dots) {
   var answer = 0;
-  const x = dots.map((item) => item[0]);
-  const y = dots.map((item) => item[1]);
 
-  answer = (Math.max(...x) - Math.min(...x)) * (Math.max(...y) - Math.min(...y));
-  console.log(answer);
+  let left = dots.map((item) => item[0]);
+
+  let right = dots.map((item) => item[1]);
+
+  answer = Math.max(...left) - Math.min(...left) * Math.max(...right) - Math.min(...right);
+
   return answer;
 }
 

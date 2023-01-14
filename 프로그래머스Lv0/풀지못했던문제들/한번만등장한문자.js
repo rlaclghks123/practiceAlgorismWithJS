@@ -27,3 +27,21 @@ solution('abcabcadc'); // "d"
 solution('abdc'); // "abcd"
 
 solution('hello'); //"eho"
+
+function solution(s) {
+  var answer = '';
+
+  // 1. 모든 요소를 확인하기 위해 s를 배열로 만든다.
+  const arr = s.split('');
+  const map = new Map();
+
+  arr.forEach((item) => {
+    map.set(item, (map.get(item) || 0) + 1);
+  });
+  [...map].map((item) => {
+    const [alpha, many] = item;
+    if (many === 1) answer += alpha;
+  });
+  answer = [...answer].sort().join('');
+  return answer;
+}

@@ -29,19 +29,19 @@ function factorial(n) {
 //   } else {
 //     answer = boonMo / boonJa;
 //   }
-
+//   console.log(answer);
 //   return answer;
 // }
 
 // 틀린이유 : BigInt를 몰라 크기가 클 경우 어떻게 해야할지 몰랐다.
 // 다시풀기
+
 function solution(balls, share) {
   var answer = 0;
-
-  if (balls === share) return 1;
   const boonMo = factorial(balls);
   const boonJa = factorial(balls - share) * factorial(share);
-  console.log(boonMo / boonJa);
+
+  balls === share ? 1 : console.log(boonMo / boonJa);
   return answer;
 }
 

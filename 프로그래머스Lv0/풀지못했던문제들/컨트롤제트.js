@@ -32,6 +32,17 @@ function solution(s) {
   return answer;
 }
 
+function solution(s) {
+  var answer = 0;
+  const splited = s.split(' ');
+
+  splited.forEach((item, i) => {
+    item === 'Z' ? (answer -= +splited[i - 1]) : (answer += +item);
+  });
+  console.log(answer);
+  return answer;
+}
+
 solution('1 2 Z 3'); //	4
 
 solution('10 20 30 40'); //	100

@@ -24,6 +24,20 @@ function solution(dots) {
   return 0;
 }
 
+// 다시풀기
+function solution(dots) {
+  var answer = [];
+
+  for (let i = 0; i < dots.length - 1; i++) {
+    for (let j = i + 1; j < dots.length; j++) {
+      const lean = Math.abs(dots[j][0] - dots[i][0]) / Math.abs(dots[j][1] - dots[i][1]);
+      if (answer.includes(lean)) return 1;
+      answer.push(lean);
+    }
+  }
+  return 0;
+}
+
 solution([
   [1, 4],
   [9, 2],

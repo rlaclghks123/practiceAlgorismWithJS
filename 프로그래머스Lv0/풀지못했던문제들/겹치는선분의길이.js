@@ -25,20 +25,17 @@ function solution(lines) {
 // 다시 풀어보기
 function solution(lines) {
   var answer = 0;
+  const map = new Map();
 
-  const arr = Array.from({ length: 200 }, () => 0);
-
-  for (let i = 0; i < lines.length; i++) {
-    for (let j = lines[i][0] + 100; j < lines[i][1] + 100; j++) {
-      arr[j]++;
+  lines.forEach((item) => {
+    const [start, end] = item;
+    for (let i = start; i < end; i++) {
+      map.set(i, (map.get(i) || 0) + 1);
     }
-  }
-
-  arr.forEach((item) => {
-    if (item >= 2) answer++;
   });
-
-  return answer;
+  return [...map.values()].reduce((acc, cur) => {
+    return cur >= 2 ? ++acc : acc;
+  }, 0);
 }
 
 solution([

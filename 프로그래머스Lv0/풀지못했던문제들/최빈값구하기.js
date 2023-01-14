@@ -57,6 +57,28 @@ function solution(array) {
   return answer;
 }
 
+function solution(array) {
+  var answer = [];
+
+  const map = new Map();
+  array.forEach((item) => {
+    map.set(item, (map.get(item) || 0) + 1);
+  });
+
+  let max = [...map].map((item) => item[1]);
+  max = Math.max(...max);
+
+  [...map].forEach((item) => {
+    const [index, many] = item;
+    if (many === max) {
+      answer.push(index);
+    }
+  });
+  answer = answer.length === 1 ? answer[0] : -1;
+
+  return answer;
+}
+
 solution([1, 2, 3, 3, 3, 4]); // 3
 
 solution([0, 1, 2, 2, 3, 3, 3, 4]); // 3
