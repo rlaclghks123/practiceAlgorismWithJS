@@ -38,3 +38,17 @@ function solution(N, stages) {
   }
   return result.sort((a, b) => b[1] - a[1]).map((item) => item[0]);
 }
+
+// 확률과 i를 []에 같이 넣어주고, 이를 확률을 기준으로 정렬 sort((a,b)=>b[1]-a[1])후 map을 통해 i를 item[0] 하는 법을 잘 이용해야겠다.
+
+function solution(N, stages) {
+  var answer = [];
+
+  for (let i = 1; i <= N; i++) {
+    const clear = stages.filter((f) => f >= i).length;
+    const noClear = stages.filter((f) => f === i).length;
+    answer.push([i, noClear / clear]);
+  }
+  console.log(answer.sort((a, b) => b[1] - a[1]).map((item) => item[0]));
+  return answer;
+}

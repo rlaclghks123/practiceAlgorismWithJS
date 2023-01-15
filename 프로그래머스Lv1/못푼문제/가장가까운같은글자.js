@@ -40,14 +40,18 @@
 // solution('foobar'); //	[-1, -1, 1, -1, -1, -1]
 
 function solution(s) {
-  var answer = [];
+  const answer = [];
+  const stack = [1, 2, 3, 4];
 
-  answer = [...s].map((item, i) => {
-    const count = s.slice(0, i).lastIndexOf(item);
-    console.log(count);
-    return count < 0 ? -1 : i - count;
+  [...s].forEach((item) => {
+    if (stack.includes(item)) {
+      answer.push(stack.length - stack.lastIndexOf(item));
+      stack.push(item);
+    } else {
+      stack.push(item);
+      answer.push(-1);
+    }
   });
-
   return answer;
 }
 

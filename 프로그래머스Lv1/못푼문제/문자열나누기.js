@@ -60,8 +60,31 @@ function solution(s) {
   return answer.length;
 }
 
+function solution(s) {
+  let front = 0;
+  let back = 0;
+  let arr = [];
+
+  while (s.length > 0) {
+    let count = 0;
+
+    for (let i = 0; i < s.length; i++) {
+      s[0] === s[i] ? front++ : back++;
+      if (front === back) {
+        count = i + 1;
+        break;
+      }
+    }
+    arr.push(s.slice(0, count));
+    s = s.slice(count);
+    if (count === 0) break;
+  }
+
+  return arr.length;
+}
+
 solution('banana'); // 3
 
 solution('abracadabra'); // 6
 
-solution('aaabbacc ccabba'); // 3
+solution('aaabbaccccabba'); // 3

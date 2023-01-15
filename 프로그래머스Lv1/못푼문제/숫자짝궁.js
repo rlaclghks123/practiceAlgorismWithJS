@@ -37,6 +37,26 @@
 //         .join('');
 // }
 
+function solution(X, Y) {
+  var answer = [];
+  const map = new Map();
+
+  for (let i = 0; i < Y.length; i++) {
+    map.set(Y[i], (map.get(Y[i]) || 0) + 1);
+  }
+
+  for (let i = 0; i < X.length; i++) {
+    if (map.get(X[i]) > 0) {
+      map.set(X[i], (map.get(X[i]) || 0) - 1);
+      answer.push(X[i]);
+    }
+  }
+  if (answer.length === 0) return '-1';
+
+  const res = +answer.sort((a, b) => b - a).join('');
+  return String(res);
+}
+
 solution('100', '2345'); // 	"-1"
 solution('100', '200'); // 	"0"
 solution('100', '123450'); // 	"10"

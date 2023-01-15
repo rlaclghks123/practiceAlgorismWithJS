@@ -35,11 +35,11 @@ function solution(dartResult) {
   return answer;
 }
 
-solution('1D2S#10S'); //9
-solution('1D2S0T'); //3
+// solution('1D2S#10S'); //9
+// solution('1D2S0T'); //3
 solution('1S*2T*3S'); // 23
-solution('1D#2S*3S'); // 5
-solution('1T2D3D#'); //  -4
+// solution('1D#2S*3S'); // 5
+// solution('1T2D3D#'); //  -4
 solution('1D2S3T*'); // 59
 
 //  총 3번의 기회로 구성
@@ -56,25 +56,33 @@ solution('1D2S3T*'); // 59
 
 function solution(dartResult) {
   var answer = 0;
-  let score = 0;
-  let arr = [];
-
-  for (let i = 0; i < dartResult.length; i++) {
-    if (!isNaN(dartResult[i])) {
-      score = Number(dartResult[i - 1]) === 1 ? 10 : Number(dartResult[i]);
-    } else if (dartResult[i] === 'S') {
-      arr.push(score);
-    } else if (dartResult[i] === 'D') {
-      arr.push(Math.pow(score, 2));
-    } else if (dartResult[i] === 'T') {
-      arr.push(Math.pow(score, 3));
-    } else if (dartResult[i] === '*') {
-      arr[arr.length - 2] = arr[arr.length - 2] * 2;
-      arr[arr.length - 1] = arr[arr.length - 1] * 2;
-    } else if (dartResult[i] === '#') {
-      arr[arr.length - 1] = arr[arr.length - 1] * -1;
+  let stack = [];
+  [...dartResult].forEach((item, i) => {
+    if (item === 'S') {
+      return;
+    } else if (item === 'D') {
+      stack[stack.length - 1] = Math.pow(stack[stack.length - 1], 2);
+      return;
+    } else if (item === 'T') {
+      stack[stack.length - 1] = Math.pow(stack[stack.length - 1], 3);
+      return;
+    } else if (item === '*') {
+      if (!stack[stack.length - 2]) {
+        stack[stack.length - 1] = stack[stack.length - 1] * 2;
+      } else {
+        stack[stack.length - 1] = stack[stack.length - 1] * 2;
+        stack[stack.length - 2] = stack[stack.length - 2] * 2;
+      }
+      return;
+    } else if (item === '#') {
+      stack[stack.length - 1] = stack[stack.length - 1] * -1;
+      return;
+    } else {
+      if (item === '0' && dartResult[i - 1] === '1') {
+        return;
+      }
+      item === '1' && dartResult[i + 1] === '0' ? stack.push(10) : stack.push(+item);
     }
-  }
-  answer = arr.reduce((acc, cur) => acc + cur);
-  return answer;
+  });
+  return stack.reduce((acc, cur) => acc + cur, 0);
 }
