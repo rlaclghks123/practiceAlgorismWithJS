@@ -21,5 +21,21 @@ function solution(ingredient) {
   return answer;
 }
 
+// 다시풀기
+function solution(ingredient) {
+  var answer = 0;
+  let stack = [];
+
+  ingredient.forEach((item) => {
+    stack.push(item);
+    if (stack.slice(-4).join('') === '1231') {
+      answer++;
+      stack.splice(-4);
+    }
+  });
+  console.log(answer);
+  return answer;
+}
+
 solution([2, 1, 1, 2, 3, 1, 2, 3, 1]); // 2
 solution([1, 3, 2, 1, 2, 1, 3, 1, 2]); // 0

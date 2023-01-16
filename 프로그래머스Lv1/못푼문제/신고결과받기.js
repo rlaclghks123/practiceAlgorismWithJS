@@ -57,3 +57,27 @@ solution(
 ); // [2,1,1,0]
 
 solution(['con', 'ryan'], ['ryan con', 'ryan con', 'ryan con', 'ryan con'], 3); //	[0,0]
+
+// 다시풀기
+function solution(id_list, report, k) {
+  var answer = [];
+
+  const reports = new Set(report);
+
+  const counts = new Map();
+
+  reports.forEach((item) => {
+    const [reporter, reportee] = item.split(' ');
+    counts.set(reportee, (counts.get(reportee) || 0) + 1);
+  });
+
+  const result = new Map();
+  reports.forEach((item) => {
+    const [reporter, reportee] = item.split(' ');
+    if (counts.get(reportee) >= k) {
+      result.set(reporter, (result.get(reporter) || 0) + 1);
+    }
+  });
+
+  return id_list.map((item) => result.get(item) || 0);
+}

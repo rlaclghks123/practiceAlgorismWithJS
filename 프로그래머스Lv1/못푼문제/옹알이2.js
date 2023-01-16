@@ -20,3 +20,14 @@ solution(['aya', 'yee', 'u', 'maa']); // 1
 solution(['ayaye', 'uuu', 'yeye', 'yemawoo', 'ayaayaa']); // 2
 
 solution(['woayao']); // 0;
+
+function solution(babbling) {
+  const wordsDuplicate = /(aya|ye|woo|ma)\1+/;
+  const words = /^(aya|ye|woo|ma)+$/;
+  let ans = 0;
+  ans = babbling.reduce(
+    (acc, cur) => (!wordsDuplicate.test(cur) && words.test(cur) ? ++acc : acc),
+    0
+  );
+  return ans;
+}

@@ -10,12 +10,12 @@ function solution(survey, choices) {
   const indicator = ['RT', 'CF', 'JM', 'AN'];
 
   indicator.forEach((item) => [...item].forEach((char) => (MBTI[char] = 0)));
-
   survey.forEach((item, index) => {
     const [disAgree, agree] = item;
 
     MBTI[choices[index] < 4 ? disAgree : agree] += Math.abs(choices[index] - 4);
   });
+
   return indicator
     .map((item) => {
       const [left, right] = item;
@@ -32,3 +32,25 @@ function solution(survey, choices) {
 solution(['AN', 'CF', 'MJ', 'RT', 'NA'], [5, 3, 2, 7, 5]); // "TCMA"
 
 solution(['TR', 'RT', 'TR'], [7, 1, 3]); // "RCJA"
+
+// 다시풀기
+
+function solution(survey, choices) {
+  const MBTI = {};
+  const indicator = ['RT', 'CF', 'JM', 'AN'];
+
+  indicator.forEach((item) => [...item].forEach((item) => (MBTI[item] = 0)));
+
+  survey.forEach((item, index) => {
+    const [disAgree, agree] = item;
+
+    MBTI[choices[index] < 4 ? disAgree : agree] += Math.abs(choices[index] - 4);
+  });
+
+  return indicator
+    .map((item) => {
+      const [left, right] = item;
+      return MBTI[left] < MBTI[right] ? right : left;
+    })
+    .join('');
+}

@@ -172,3 +172,69 @@ solution([1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5], 'right'); // "LRLLLRLLRRL"
 solution([7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2], 'left'); //"LRLLRRLLLRR"
 
 solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 'right'); //	"LLRLLRLLRL"
+
+// 다시풀기
+// 123
+// 456
+// 789
+// *0#
+function getDistance(curPosition, target) {
+  const keyPad = {
+    1: [0, 0],
+    2: [0, 1],
+    3: [0, 2],
+    4: [1, 0],
+    5: [1, 1],
+    6: [1, 2],
+    7: [2, 0],
+    8: [2, 1],
+    9: [2, 2],
+    '*': [3, 0],
+    0: [3, 1],
+    '#': [3, 2],
+  };
+
+  let cur = keyPad[curPosition];
+  let tar = keyPad[target];
+
+  return Math.abs(cur[0] - tar[0]) + Math.abs(cur[1] - tar[1]);
+}
+
+function solution(numbers, hand) {
+  let ans = '';
+  let left = '*';
+  let right = '#';
+
+  numbers.forEach((item) => {
+    if (item === 1 || item === 4 || item === 7) {
+      left = item;
+      ans += 'L';
+      return;
+    }
+    if (item === 3 || item === 6 || item === 9) {
+      right = item;
+      ans += 'R';
+      return;
+    }
+
+    let leftDistance = getDistance(left, item);
+    let rightDistance = getDistance(right, item);
+
+    if (leftDistance === rightDistance) {
+      if (hand === 'left') {
+        left = item;
+        ans += 'L';
+      } else {
+        right = item;
+        ans += 'R';
+      }
+    } else if (leftDistance < rightDistance) {
+      left = item;
+      ans += 'L';
+    } else if (leftDistance > rightDistance) {
+      right = item;
+      ans += 'R';
+    }
+  });
+  return ans;
+}

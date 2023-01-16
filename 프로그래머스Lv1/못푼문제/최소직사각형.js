@@ -39,3 +39,22 @@ solution([
   [18, 7],
   [7, 11],
 ]); //	133
+
+// 다시풀기
+function solution(sizes) {
+  var answer = 0;
+  const leftMap = sizes
+    .map((item) => {
+      const [left, right] = item;
+      return left < right ? [right, left] : [left, right];
+    })
+    .map((item) => item[0]);
+
+  const rightMap = sizes
+    .map((item) => {
+      const [left, right] = item;
+      return left < right ? [right, left] : [left, right];
+    })
+    .map((item) => item[1]);
+  return Math.max(...leftMap) * Math.max(...rightMap);
+}
