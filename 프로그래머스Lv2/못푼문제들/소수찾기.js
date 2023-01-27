@@ -51,6 +51,7 @@ function solution(numbers) {
   let set = new Set();
 
   function makeSentence(find, other) {
+    console.log(find);
     set.add(+find);
 
     for (let i = 0; i < other.length; i++) {
