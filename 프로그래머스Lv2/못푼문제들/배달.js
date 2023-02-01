@@ -55,6 +55,7 @@ function solution(N, road, K) {
     const { to } = q.pop();
 
     map[to].forEach((next) => {
+      console.log(arr);
       if (arr[next.to] > arr[to] + next.cost) {
         arr[next.to] = arr[to] + next.cost;
         q.push(next);
