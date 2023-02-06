@@ -97,6 +97,60 @@ function solution(board) {
   return board.map((item) => item.filter((f) => f === 0).length).reduce((acc, cur) => acc + cur, 0);
 }
 
+function solution(board) {
+  let dx = [1, 1, 1, 0, -1, -1, -1, 0];
+  let dy = [-1, 0, 1, 1, 1, 0, -1, -1];
+
+  let n = board.length;
+  let m = board[0].length;
+
+  let d = Array.from({ length: n }, () => Array.from({ length: m }, () => 0));
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (board[i][j] === 1) {
+        for (let k = 0; k < 8; k++) {
+          let nx = i + dx[k];
+          let ny = j + dy[k];
+
+          if (nx >= 0 && nx < n && ny >= 0 && ny < m && board[nx][ny] !== 1) {
+            board[nx][ny] = 2;
+          }
+        }
+      }
+    }
+  }
+  answer = board
+    .map((item) => item.filter((f) => f === 0).length)
+    .reduce((acc, cur) => acc + cur, 0);
+  return answer;
+}
+
+solution([
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0],
+]); // 16
+
+solution([
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 0],
+  [0, 0, 0, 0, 0],
+]); // 13
+
+solution([
+  [1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1],
+]); // 0
+
 // 9-4 = 5
 solution([
   [1, 0, 0],

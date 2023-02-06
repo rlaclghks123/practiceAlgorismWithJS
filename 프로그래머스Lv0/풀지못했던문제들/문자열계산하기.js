@@ -36,6 +36,23 @@ function solution(my_string) {
   return answer;
 }
 
+function solution(my_string) {
+  let split = my_string.split(' ');
+  let answer = +split[0];
+  split.forEach((item, i) => {
+    if (i === 0) return;
+
+    if (item === '+') {
+      answer += +split[i + 1];
+    }
+    if (item === '-') {
+      answer -= +split[i + 1];
+    }
+  });
+  console.log(answer);
+  return answer;
+}
+
 solution('3 + 4'); //7
 
 solution('5 - 3'); // 2

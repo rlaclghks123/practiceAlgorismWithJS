@@ -52,6 +52,26 @@ function solution(polynomial) {
   return answer.join(' + ');
 }
 
+function solution(polynomial) {
+  let answer = [];
+
+  let xNum = polynomial
+    .split(' + ')
+    .filter((f) => f.includes('x'))
+    .map((item) => item.replace('x', '') || '1')
+    .reduce((acc, cur) => acc + Number(cur), 0);
+
+  if (xNum) answer.push(xNum === 1 ? 'x' : xNum + 'x');
+
+  let num = polynomial
+    .split(' + ')
+    .filter((item) => !isNaN(item))
+    .reduce((acc, cur) => acc + Number(cur), 0);
+
+  if (num) answer.push(num);
+  return answer.join(' + ');
+}
+
 solution('x + x + x'); // 	"3x"
 
 solution('x'); // 	"x"

@@ -45,6 +45,13 @@ function solution(balls, share) {
   return answer;
 }
 
+function solution(balls, share) {
+  let boonJa = factorial(balls);
+  let boonMo = factorial(balls - share) * factorial(share);
+
+  return boonJa / boonMo;
+}
+
 solution(3, 2); //3
 
 solution(3, 3); //1

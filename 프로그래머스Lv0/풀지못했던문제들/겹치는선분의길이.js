@@ -38,6 +38,25 @@ function solution(lines) {
   }, 0);
 }
 
+function solution(lines) {
+  let map = new Map();
+
+  lines.forEach((item) => {
+    const [start, end] = item;
+
+    for (let i = start; i < end; i++) {
+      map.set(i, (map.get(i) || 0) + 1);
+    }
+  });
+
+  return [...map.values()].reduce((acc, cur) => {
+    if (cur >= 2) {
+      acc++;
+    }
+    return acc;
+  }, 0);
+}
+
 solution([
   [0, 1],
   [2, 5],
