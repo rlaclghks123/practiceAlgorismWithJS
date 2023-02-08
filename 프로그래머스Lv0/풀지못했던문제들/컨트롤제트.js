@@ -43,6 +43,16 @@ function solution(s) {
   return answer;
 }
 
+function solution(s) {
+  let split = s.split(' ');
+  let stack = [];
+  split.forEach((word) => {
+    if (word === 'Z') stack.pop();
+    else stack.push(word);
+  });
+  return stack.reduce((acc, cur) => acc + Number(cur), 0);
+}
+
 solution('1 2 Z 3'); //	4
 
 solution('10 20 30 40'); //	100

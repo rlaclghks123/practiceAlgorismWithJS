@@ -45,3 +45,18 @@ function solution(s) {
   answer = [...answer].sort().join('');
   return answer;
 }
+
+function solution(s) {
+  let answer = '';
+  let map = new Map();
+  [...s].forEach((word) => {
+    map.set(word, (map.get(word) || 0) + 1);
+  });
+
+  let newMap = [...map]
+    .map((word) => {
+      if (word[1] === 1) return word[0];
+    })
+    .sort();
+  return newMap.join('');
+}

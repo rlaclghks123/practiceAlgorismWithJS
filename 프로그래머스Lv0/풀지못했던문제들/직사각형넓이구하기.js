@@ -30,6 +30,15 @@ function solution(dots) {
   return answer;
 }
 
+function solution(dots) {
+  const left = dots.map((item) => item[0]);
+  const right = dots.map((item) => item[1]);
+
+  let ansLeft = Math.abs(Math.max(...left) - Math.min(...left));
+  let ansRight = Math.abs(Math.max(...right) - Math.min(...right));
+  return ansLeft * ansRight;
+}
+
 solution([
   [1, 1],
   [2, 1],

@@ -48,6 +48,17 @@ function solution(chicken) {
 
   return service;
 }
+
+function solution(chicken) {
+  let service = 0;
+  let coupon = chicken;
+
+  while (coupon >= 10) {
+    service += Math.floor(coupon / 10);
+    coupon = Math.floor((coupon % 10) + coupon / 10);
+  }
+  return service;
+}
 solution(100); // 11
 
 solution(1081); // 120

@@ -79,6 +79,23 @@ function solution(array) {
   return answer;
 }
 
+function solution(array) {
+  let answer = [];
+  const map = new Map();
+
+  array.forEach((item) => {
+    map.set(item, (map.get(item) || 0) + 1);
+  });
+
+  let max = Math.max(...map.values());
+  [...map].map((item) => {
+    if (item[1] === max) answer.push(item[0]);
+  });
+
+  if (answer.length === 1) return answer;
+  else return -1;
+}
+
 solution([1, 2, 3, 3, 3, 4]); // 3
 
 solution([0, 1, 2, 2, 3, 3, 3, 4]); // 3

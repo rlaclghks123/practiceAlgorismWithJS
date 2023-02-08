@@ -38,6 +38,18 @@ function solution(dots) {
   return 0;
 }
 
+function solution(dots) {
+  let answer = [];
+  for (let i = 0; i < dots.length - 1; i++) {
+    for (let j = i + 1; j < dots.length; j++) {
+      let lean = Math.abs(dots[j][1] - dots[i][1]) / Math.abs(dots[j][0] - dots[i][0]);
+      if (answer.includes(lean)) return 1;
+      answer.push(lean);
+    }
+  }
+  return 0;
+}
+
 solution([
   [1, 4],
   [9, 2],

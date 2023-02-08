@@ -60,9 +60,27 @@ function solution(num, total) {
   console.log(answer);
 }
 
-solution(3, 12); // [3, 4, 5]
+function solution(num, total) {
+  let start = -1000;
+  while (start < 1000) {
+    let answer = 0;
+    for (let i = start; i < start + num; i++) {
+      answer += i;
+    }
+    if (answer === total) break;
+    start++;
+  }
 
-solution(5, 15); // [1, 2, 3, 4, 5]
+  let res = [];
+  for (let i = start; i < start + num; i++) {
+    res.push(i);
+  }
+  return res;
+}
+
+// solution(3, 12); // [3, 4, 5]
+
+// solution(5, 15); // [1, 2, 3, 4, 5]
 
 solution(4, 14); //[2, 3, 4, 5]
 
