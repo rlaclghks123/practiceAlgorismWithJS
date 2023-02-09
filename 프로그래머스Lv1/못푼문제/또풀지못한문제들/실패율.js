@@ -24,10 +24,6 @@ function solution(N, stages) {
   return result.map((x) => x[0]);
 }
 
-solution(5, [2, 1, 2, 6, 2, 4, 3, 3]); // [3,4,2,1,5]
-
-solution(4, [4, 4, 4, 4, 4]); // [4,1,2,3]
-
 function solution(N, stages) {
   let result = [];
 
@@ -52,3 +48,18 @@ function solution(N, stages) {
   console.log(answer.sort((a, b) => b[1] - a[1]).map((item) => item[0]));
   return answer;
 }
+
+function solution(N, stages) {
+  let answer = [];
+  for (let i = 1; i <= N; i++) {
+    const clear = stages.filter((f) => f >= i).length;
+    const noClear = stages.filter((f) => f === i).length;
+
+    answer.push([i, noClear / clear]);
+  }
+  return answer.sort((a, b) => b[1] - a[1]).map((i) => i[0]);
+}
+
+solution(5, [2, 1, 2, 6, 2, 4, 3, 3]); // [3,4,2,1,5]
+
+solution(4, [4, 4, 4, 4, 4]); // [4,1,2,3]

@@ -29,10 +29,6 @@ function solution(survey, choices) {
 // 3번 지표	제이지형(J), 무지형(M)
 //  4번 지표	어피치형(A), 네오형(N)
 
-solution(['AN', 'CF', 'MJ', 'RT', 'NA'], [5, 3, 2, 7, 5]); // "TCMA"
-
-solution(['TR', 'RT', 'TR'], [7, 1, 3]); // "RCJA"
-
 // 다시풀기
 
 function solution(survey, choices) {
@@ -54,3 +50,28 @@ function solution(survey, choices) {
     })
     .join('');
 }
+
+function solution(survey, choices) {
+  const MBTI = {};
+  const indicator = ['RT', 'CF', 'JM', 'AN'];
+
+  indicator.forEach((item) => [...item].forEach((char) => (MBTI[char] = 0)));
+
+  survey.forEach((item, index) => {
+    const [disAgree, agree] = item;
+
+    MBTI[choices[index] < 4 ? disAgree : agree] += Math.abs(choices[index] - 4);
+  });
+
+  return indicator
+    .map((item) => {
+      const [left, right] = item;
+
+      return MBTI[left] < MBTI[right] ? right : left;
+    })
+    .join('');
+}
+
+solution(['AN', 'CF', 'MJ', 'RT', 'NA'], [5, 3, 2, 7, 5]); // "TCMA"
+
+solution(['TR', 'RT', 'TR'], [7, 1, 3]); // "RCJA"
