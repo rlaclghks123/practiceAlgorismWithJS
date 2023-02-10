@@ -62,6 +62,23 @@ function solution(k, score) {
 
   return res;
 }
+
+function solution(k, score) {
+  let answer = [];
+  let stack = [];
+
+  score.forEach((num) => {
+    stack.push(num);
+
+    stack.sort((a, b) => b - a);
+
+    if (stack.length > k) stack.pop();
+
+    answer.push(stack[stack.length - 1]);
+  });
+  return answer;
+}
+
 solution(3, [10, 100, 20, 150, 1, 100, 200]); // [10, 10, 10, 20, 20, 100, 100]
 
 solution(4, [0, 300, 40, 300, 20, 70, 150, 50, 500, 1000]); // [0, 0, 0, 0, 20, 40, 70, 70, 150, 300]

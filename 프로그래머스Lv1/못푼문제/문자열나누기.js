@@ -83,6 +83,28 @@ function solution(s) {
   return arr.length;
 }
 
+function solution(s) {
+  let front = 0;
+  let back = 0;
+  let answer = [];
+
+  while (s.length) {
+    let count = 0;
+
+    for (let i = 0; i < s.length; i++) {
+      s[0] === s[i] ? front++ : back++;
+      if (front === back) {
+        count = i + 1;
+        break;
+      }
+    }
+    answer.push(s.slice(0, count));
+    s = s.slice(count);
+    if (count === 0) break;
+  }
+  return answer.length;
+}
+
 solution('banana'); // 3
 
 solution('abracadabra'); // 6

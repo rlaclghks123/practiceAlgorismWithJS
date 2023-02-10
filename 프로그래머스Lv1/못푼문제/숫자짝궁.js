@@ -57,6 +57,28 @@ function solution(X, Y) {
   return String(res);
 }
 
+function solution(X, Y) {
+  const map = new Map();
+  let answer = '';
+
+  for (let i = 0; i < Y.length; i++) {
+    map.set(Y[i], (map.get(Y[i]) || 0) + 1);
+  }
+
+  for (let i = 0; i < X.length; i++) {
+    if (map.has(X[i]) && map.get(X[i]) > 0) {
+      answer += X[i];
+      map.set(X[i], map.get(X[i]) - 1);
+    }
+  }
+  if (answer.length === 0) return '-1';
+  if (+answer === 0) return '0';
+  return answer
+    .split('')
+    .sort((a, b) => b - a)
+    .join('');
+}
+
 solution('100', '2345'); // 	"-1"
 solution('100', '200'); // 	"0"
 solution('100', '123450'); // 	"10"

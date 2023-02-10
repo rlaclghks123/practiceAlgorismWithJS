@@ -55,6 +55,21 @@ function solution(s) {
   return answer;
 }
 
+function solution(s) {
+  let answer = [];
+  let stack = [];
+  [...s].forEach((char) => {
+    if (stack.includes(char)) {
+      answer.push(stack.length - stack.lastIndexOf(char));
+      stack.push(char);
+    } else {
+      stack.push(char);
+      answer.push(-1);
+    }
+  });
+  return answer;
+}
+
 solution('banana'); //	[-1, -1, -1, 2, 2, 2]
 
 solution('foobar'); //	[-1, -1, 1, -1, -1, -1]
