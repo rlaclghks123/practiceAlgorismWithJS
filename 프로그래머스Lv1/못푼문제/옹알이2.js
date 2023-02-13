@@ -16,11 +16,6 @@ function solution(babbling) {
   );
 }
 
-solution(['aya', 'yee', 'u', 'maa']); // 1
-solution(['ayaye', 'uuu', 'yeye', 'yemawoo', 'ayaayaa']); // 2
-
-solution(['woayao']); // 0;
-
 function solution(babbling) {
   const wordsDuplicate = /(aya|ye|woo|ma)\1+/;
   const words = /^(aya|ye|woo|ma)+$/;
@@ -31,3 +26,21 @@ function solution(babbling) {
   );
   return ans;
 }
+
+function solution(babbling) {
+  let ans = 0;
+
+  const wordsDuplicate = /(aya|ye|woo|ma)\1+/;
+  const words = /^(aya|ye|woo|ma)+$/;
+
+  ans = babbling.reduce(
+    (acc, cur) => (!wordsDuplicate.test(cur) && words.test(cur) ? ++acc : acc),
+    0
+  );
+  return ans;
+}
+
+solution(['aya', 'yee', 'u', 'maa']); // 1
+solution(['ayaye', 'uuu', 'yeye', 'yemawoo', 'ayaayaa']); // 2
+
+solution(['woayao']); // 0;
