@@ -60,8 +60,8 @@ rl.on('line', function (line) {
       while (q.length) {
         const [x, y, cnt] = q.shift();
 
-        // 만약 현재값이 level값 이하이면서  0이 아닌경우 feedposition에 담아줍니다.
-        if (map[x][y] <= level && map[x][y] !== 0) {
+        // 만약 현재값이 level값보다 작으면서  0이 아닌경우 feedposition에 담아줍니다.  자기보다 작은경우만 먹을수 있기 떄문입니다.
+        if (map[x][y] < level && map[x][y] !== 0) {
           feedPosition.push([x, y, cnt]);
         }
 
@@ -69,7 +69,7 @@ rl.on('line', function (line) {
           let nx = x + dx[i];
           let ny = y + dy[i];
 
-          // 범위내에 있으면서, 다음값이 level값 이하이면서, 방문한적 없으면 q에 담아주고, 방문처리 해줍니다.
+          // 범위내에 있으면서, 다음값이 level값 이하이면서, 방문한적 없으면 q에 담아주고, 방문처리 해줍니다.  작은경우만 먹을 수 있지만, 같아도 지나갈수는 있기 때문에
           if (0 <= nx && nx < n && ny >= 0 && ny < n) {
             if (map[nx][ny] <= level && !visited[nx][ny]) {
               q.push([nx, ny, cnt + 1]);
@@ -111,14 +111,13 @@ rl.on('line', function (line) {
         // 현재값과 총 이동횟수를 바꿔줍니다.
         cur = [fx, fy];
         movCtn = fcnt;
+        // 총 거리를 이동한 횟수로 늘려줍니다.
+        dist += movCtn;
       }
       // 이동가능한 위치가 존재하지 않는다면 거리를 출력해줍니다.
       else {
         return dist;
       }
-
-      // 총 거리를 이동한 횟수로 늘려줍니다.
-      dist += movCtn;
     }
   }
 
