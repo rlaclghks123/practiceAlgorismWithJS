@@ -72,6 +72,42 @@ function solution(polynomial) {
   return answer.join(' + ');
 }
 
+function solution(polynomial) {
+  let ans = [];
+  let xArr = polynomial
+    .split(' + ')
+    .filter((item) => item.includes('x'))
+    .map((item) => {
+      if (item === 'x') return 1;
+      return +item.replace('x', '');
+    })
+    .reduce((a, c) => (a += c), 0);
+
+  let conArr = polynomial
+    .split(' + ')
+    .filter((item) => !isNaN(item))
+    .map(Number)
+    .reduce((a, c) => (a += c), 0);
+
+  if (xArr === 1) {
+    ans.push('x');
+  } else if (xArr !== 0) {
+    ans.push(xArr + 'x');
+  }
+
+  if (conArr === 0) {
+    console.log(ans.join(''));
+    return;
+  } else {
+    if (ans.length === 0) {
+      ans.push(conArr);
+    } else {
+      ans.push(' + ' + conArr);
+    }
+    console.log(ans.join(''));
+  }
+}
+
 solution('x + x + x'); // 	"3x"
 
 solution('x'); // 	"x"
