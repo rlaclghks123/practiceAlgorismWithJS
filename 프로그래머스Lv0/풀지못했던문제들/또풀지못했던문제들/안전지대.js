@@ -126,6 +126,45 @@ function solution(board) {
   return answer;
 }
 
+function solution(board) {
+  let dx = [1, 1, 1, 0, -1, -1, -1, 0];
+  let dy = [-1, 0, 1, 1, 1, 0, -1, -1];
+
+  let n = board.length;
+  let m = board[0].length;
+
+  let d = Array.from({ length: n }, () => Array.from({ length: m }, () => 0));
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (board[i][j] === 1) {
+        let q = [[i, j]];
+        d[i][j] = 2;
+        while (q.length) {
+          let [x, y] = q.shift();
+
+          for (let i = 0; i < 8; i++) {
+            let [nx, ny] = [x + dx[i], y + dy[i]];
+            if (0 <= nx && nx < n && ny >= 0 && ny < m) {
+              if (d[nx][ny] === 0 && board[nx][ny] === 0) {
+                d[nx][ny] = 2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return d.reduce((a, c) => {
+    for (let v of c) {
+      if (v === 0) {
+        a++;
+      }
+    }
+    return a;
+  }, 0);
+}
+
 solution([
   [0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0],
