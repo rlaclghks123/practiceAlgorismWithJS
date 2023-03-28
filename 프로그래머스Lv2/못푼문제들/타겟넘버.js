@@ -26,9 +26,6 @@ function solution(numbers, target) {
   return ans;
 }
 
-solution([1, 1, 1, 1, 1], 3); //	5
-solution([4, 1, 2, 1], 4); //	2
-
 function solution(numbers, target) {
   let answer = 0;
   function dfs(index, sum) {
@@ -44,3 +41,24 @@ function solution(numbers, target) {
   dfs(0, 0);
   return answer;
 }
+
+function solution(numbers, target) {
+  let answer = 0;
+  dfs(0, 0);
+
+  function dfs(cnt, sum) {
+    if (cnt === numbers.length) {
+      if (sum === target) {
+        answer++;
+      }
+      return;
+    }
+
+    dfs(cnt + 1, sum + numbers[cnt]);
+    dfs(cnt + 1, sum - numbers[cnt]);
+  }
+  return answer;
+}
+
+solution([1, 1, 1, 1, 1], 3); //	5
+solution([4, 1, 2, 1], 4); //	2
