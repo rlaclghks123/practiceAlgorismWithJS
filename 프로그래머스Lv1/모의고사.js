@@ -27,10 +27,36 @@ function solution(answers) {
   return answer.sort((a, b) => a - b);
 }
 
+function solution(answers) {
+  let n = answers.length;
+  let oneCnt = 0;
+  let twoCnt = 0;
+  let threeCnt = 0;
+
+  for (let i = 0; i < n; i++) {
+    let ans = answers[i];
+    let one = oneAnswer[i % 5];
+    let two = twoAnswer[i % 8];
+    let three = threeAnswer[i % 10];
+
+    if (ans === one) oneCnt++;
+    if (ans === two) twoCnt++;
+    if (ans === three) threeCnt++;
+  }
+  let res = [];
+  let max = Math.max(oneCnt, twoCnt, threeCnt);
+
+  if (max === oneCnt) res.push(1);
+  if (max === twoCnt) res.push(2);
+  if (max === threeCnt) res.push(3);
+
+  return res;
+}
+
 solution([1, 2, 3, 4, 5]); // 	[1]
 
-solution([1, 3, 2, 4, 2]); //	[1,2,3]
+// solution([1, 3, 2, 4, 2]); //	[1,2,3]
 
-solution([3, 3, 2, 1, 5]); // -> [3]
+// solution([3, 3, 2, 1, 5]); // -> [3]
 
-solution([5, 5, 4, 2, 3]); //  -> [1,2,3]
+// solution([5, 5, 4, 2, 3]); //  -> [1,2,3]
