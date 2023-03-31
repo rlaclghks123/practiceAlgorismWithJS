@@ -19,27 +19,6 @@ function solution(sizes) {
   return answer;
 }
 
-solution([
-  [60, 50],
-  [30, 70],
-  [60, 30],
-  [80, 40],
-]); //4000
-solution([
-  [10, 7],
-  [12, 3],
-  [8, 15],
-  [14, 7],
-  [5, 15],
-]); //	120
-solution([
-  [14, 4],
-  [19, 6],
-  [6, 16],
-  [18, 7],
-  [7, 11],
-]); //	133
-
 // 다시풀기
 function solution(sizes) {
   var answer = 0;
@@ -58,3 +37,40 @@ function solution(sizes) {
     .map((item) => item[1]);
   return Math.max(...leftMap) * Math.max(...rightMap);
 }
+
+function solution(sizes) {
+  let left = sizes.map((item) => {
+    let [l, r] = item;
+    return l < r ? l : r;
+  });
+
+  let right = sizes.map((item) => {
+    let [l, r] = item;
+    return l < r ? r : l;
+  });
+
+  return Math.max(...left) * Math.max(...right);
+}
+
+solution([
+  [60, 50],
+  [30, 70],
+  [60, 30],
+  [80, 40],
+]); //4000
+
+// solution([
+//   [10, 7],
+//   [12, 3],
+//   [8, 15],
+//   [14, 7],
+//   [5, 15],
+// ]); //	120
+
+// solution([
+//   [14, 4],
+//   [19, 6],
+//   [6, 16],
+//   [18, 7],
+//   [7, 11],
+// ]); //	133
