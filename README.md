@@ -424,6 +424,39 @@ function fibonacci(n) {
   }
   ```
 
+```js
+// 반복문을 통해 n만큼 반복
+for (let i = 0; i < n; i++) {
+  // 시작점 = 0, 끝점은 n-1
+  let find = arr[i];
+  let first = 0;
+  let last = n - 1;
+
+  // 시작값보다 끝점이 크다면 반복
+  while (first < last) {
+    // 합이 find라면
+    if (arr[first] + arr[last] === find) {
+      if (i !== first && i != last) {
+        cnt++;
+        break;
+      } else if (i === first) {
+        first++;
+      } else if (i === last) {
+        last--;
+      }
+    }
+    // 합이 find보다 작다면 시작점 ++,
+    else if (arr[first] + arr[last] < find) {
+      first++;
+    }
+    // 합이 find보다 크다면 끝점 --,
+    else {
+      last--;
+    }
+  }
+}
+```
+
 # 다익스트라 알고리즘
 
 - 주로 최단경로 구할때 많이 사용
