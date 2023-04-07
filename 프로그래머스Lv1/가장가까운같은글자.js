@@ -70,6 +70,22 @@ function solution(s) {
   return answer;
 }
 
+function solution(s) {
+  let map = new Map();
+  let answer = [];
+  for (let i = 0; i < s.length; i++) {
+    if (!map.has(s[i])) {
+      answer.push(-1);
+      map.set(s[i], i);
+    } else {
+      answer.push(i - map.get(s[i]));
+      map.set(s[i], i);
+    }
+  }
+
+  return answer;
+}
+
 solution('banana'); //	[-1, -1, -1, 2, 2, 2]
 
 solution('foobar'); //	[-1, -1, 1, -1, -1, -1]
