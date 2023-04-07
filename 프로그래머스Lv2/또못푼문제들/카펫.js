@@ -53,6 +53,23 @@ function solution(brown, yellow) {
   return ans;
 }
 
+// yellow = x-2 * y-2 ;
+
+function solution(brown, yellow) {
+  let answer = [];
+  let sum = brown + yellow;
+
+  for (let i = 3; i <= sum; i++) {
+    if (sum % i === 0) {
+      let weight = sum / i;
+      if ((weight - 2) * (i - 2) === yellow) {
+        return [weight, i];
+      }
+    }
+  }
+  return answer;
+}
+
 solution(10, 2); // [4, 3]
 solution(8, 1); // [3, 3]
 solution(24, 24); // [8, 6]
