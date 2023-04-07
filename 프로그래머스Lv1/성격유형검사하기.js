@@ -72,6 +72,33 @@ function solution(survey, choices) {
     .join('');
 }
 
+// 복습
+function solution(survey, choices) {
+  let indicator = ['RT', 'CF', 'JM', 'AN'];
+  let mbti = {};
+
+  survey.forEach((item) => {
+    [...item].forEach((item) => (mbti[item] = 0));
+  });
+
+  survey.forEach((item, i) => {
+    let num = choices[i];
+    num > 4 ? (mbti[item[1]] += Math.abs(num - 4)) : (mbti[item[0]] += Math.abs(num - 4));
+  });
+
+  let ans = indicator.map((item) => {
+    let [left, right] = item;
+    if (mbti[left] > mbti[right]) {
+      return left;
+    } else if (mbti[left] < mbti[right]) {
+      return right;
+    } else {
+      return left.localeCompare(right) ? left : right;
+    }
+  });
+  return ans.join('');
+}
+
 solution(['AN', 'CF', 'MJ', 'RT', 'NA'], [5, 3, 2, 7, 5]); // "TCMA"
 
 solution(['TR', 'RT', 'TR'], [7, 1, 3]); // "RCJA"
