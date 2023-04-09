@@ -53,6 +53,19 @@ function solution(my_string) {
   return answer;
 }
 
+function solution(my_string) {
+  return my_string
+    .split(' - ')
+    .map((item, i) => {
+      let splitPlus = item.split(' + ').map(Number);
+
+      if (i !== 0) splitPlus[0] = -splitPlus[0];
+
+      return splitPlus.reduce((a, c) => a + c, 0);
+    })
+    .reduce((a, c) => a + c, 0);
+}
+
 solution('3 + 4'); //7
 
 solution('5 - 3'); // 2
