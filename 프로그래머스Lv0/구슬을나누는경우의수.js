@@ -52,6 +52,29 @@ function solution(balls, share) {
   return boonJa / boonMo;
 }
 
+// n개 중 m개 뽑는 조합
+//      n!
+// -----------
+// (n-m)! * m!
+// factorial 함수 계산시 숫자가 너무 커서 BigInt를 사용해야됨
+// BigInt(숫자) or 숫자n 으로 사용 가능 BigInt(3) or 3n
+
+function solution(balls, share) {
+  var answer = 0;
+  let top = factorial(balls);
+  let bottom = factorial(balls - share) * factorial(share);
+
+  return top / bottom;
+}
+
+function factorial(num) {
+  let ans = 1n;
+  for (let i = 1; i <= num; i++) {
+    ans *= BigInt(i);
+  }
+  return ans;
+}
+
 solution(3, 2); //3
 
 solution(3, 3); //1
