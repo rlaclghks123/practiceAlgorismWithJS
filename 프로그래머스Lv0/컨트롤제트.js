@@ -53,6 +53,25 @@ function solution(s) {
   return stack.reduce((acc, cur) => acc + Number(cur), 0);
 }
 
+// 1. s를 공백(' ')을 기준으로 split 해줍니다.
+// 2. 1을 통해 만든 배열을 돌면서 Z가 나오면 stack에 마지막값을 제거해줍니다.
+// 3. Z가 아닌경우 stack에 push 해줍니다.
+// 4. stack의 모든값을 더해줍니다.
+
+function solution(s) {
+  let stack = [];
+
+  s.split(' ').forEach((item) => {
+    if (item === 'Z') {
+      stack.pop();
+      return;
+    }
+    stack.push(+item);
+  });
+
+  return stack.reduce((a, c) => a + c, 0);
+}
+
 solution('1 2 Z 3'); //	4
 
 solution('10 20 30 40'); //	100

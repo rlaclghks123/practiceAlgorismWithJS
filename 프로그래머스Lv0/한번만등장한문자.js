@@ -60,3 +60,23 @@ function solution(s) {
     .sort();
   return newMap.join('');
 }
+
+// 1. s문자열의 각각 문자를 map에 담아줍니다. 만약 map에 존재한다면 value값으로 3을 담아줍니다.
+// 2. map을 배열로 만든뒤, 탐색하면서 value값이 1인경우만 key값을 추출한 배열로 만들어줍니다.
+// 3. 2에서 만든 배열을 사전순으로 정렬후 문자열로 바꿔줍니다.
+
+function solution(s) {
+  let map = new Map();
+
+  [...s].map((item) => {
+    map.set(item, map.get(item) ? 3 : 1);
+  });
+
+  return [...map]
+    .map((item) => {
+      let [alpha, times] = item;
+      if (times === 1) return alpha;
+    })
+    .sort()
+    .join('');
+}
