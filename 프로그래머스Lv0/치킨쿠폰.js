@@ -59,6 +59,23 @@ function solution(chicken) {
   }
   return service;
 }
+
+// 치킨 1마리 시키면 쿠폰 1장 발급
+// 쿠폰 10장을 모으면 한마리 서비스, 서비스에도 쿠폰이 발급
+
+function solution(chicken) {
+  let service = 0;
+  let coupon = chicken;
+
+  while (coupon >= 10) {
+    // 10마리당 서비스 1마리
+    service += Math.floor(coupon / 10);
+
+    // 남은쿠폰 = 치킨으로 바꿔 먹은 쿠폰 + 치킨으로 못바꿔먹은 쿠폰
+    coupon = Math.floor(coupon / 10 + (coupon % 10));
+  }
+  return service;
+}
 solution(100); // 11
 
 solution(1081); // 120

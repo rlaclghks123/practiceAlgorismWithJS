@@ -39,6 +39,24 @@ function solution(dots) {
   return ansLeft * ansRight;
 }
 
+// x의 값들만 모아서 left배열에 담아줍니다.
+// y의 값들만 모아서 right배열에 담아줍니다.
+// x의 최댓값 - 최소값 = height
+// y의 최댓값 - 최소값 = width
+
+// 단 x,y가 좀 다를 수 있습니다.
+// 저는 row 방향을 y, col 방향을 x라고 생각하고 풀었습니다.
+
+function solution(dots) {
+  const x = dots.map((item) => item[0]);
+  const y = dots.map((item) => item[1]);
+
+  let height = Math.abs(Math.max(...x) - Math.min(...x));
+  let width = Math.abs(Math.max(...y) - Math.min(...y));
+
+  return width * height;
+}
+
 solution([
   [1, 1],
   [2, 1],
