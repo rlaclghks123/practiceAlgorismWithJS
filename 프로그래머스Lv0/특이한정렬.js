@@ -53,6 +53,21 @@ function solution(numlist, n) {
   console.log(numlist);
 }
 
+// 1. sort를 활용해 2개의 원소를 비교한다.
+// 1-1 각 원소는 n과의 차이를 구한다.
+
+// 2. 각 원소의 n과의 차이가 같은경우 더 큰 수를 앞에 오도록 배치
+
+// 3. 각 원소의 n과의 차이가 다른 경우 '차이가 작은 값'을 앞으로 정렬한다.(가까운수를 앞에)
+
+function solution(numlist, n) {
+  return numlist.sort((a, b) => {
+    let [aGap, bGap] = [Math.abs(a - n), Math.abs(b - n)];
+    if (aGap === bGap) return b - a;
+    return aGap - bGap;
+  });
+}
+
 solution([1, 2, 3, 4, 5, 6], 4); // [4, 5, 3, 6, 2, 1]
 
 solution([10000, 20, 36, 47, 40, 6, 10, 7000], 30); // [36, 40, 20, 47, 10, 6, 7000, 10000]

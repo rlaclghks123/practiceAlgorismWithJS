@@ -57,6 +57,23 @@ function solution(lines) {
   }, 0);
 }
 
+// 1. Map에 선분의 [시작점 이상, 끝점 '미만'] 까지의 숫자를 +1씩 담아줍니다.
+// 2. Map에서 value값이 2이상인 경우의 개수를 찾아 출력해줍니다.
+
+function solution(lines) {
+  let map = new Map();
+
+  lines.forEach((item) => {
+    let [start, end] = item;
+
+    for (let i = start; i < end; i++) {
+      map.set(i, (map.get(i) || 0) + 1);
+    }
+  });
+
+  return [...map.values()].reduce((a, c) => (c >= 2 ? (a += 1) : a), 0);
+}
+
 solution([
   [0, 1],
   [2, 5],

@@ -96,6 +96,30 @@ function solution(array) {
   else return -1;
 }
 
+// 1. map에 array의 값들을 담아줍니다.
+// 2. map에서 최빈값을 찾아줍니다.
+// 3. map을 배열로 만든 뒤, 순회하면서 최빈값과 같은경우 key값을 ans에 담아줍니다.
+// 4. ans의 값이 1개면 ans의 첫번째 값을 출력, 그외의 경우 -1을 출력
+
+function solution(array) {
+  let map = new Map();
+  let max = 0;
+  array.forEach((item) => map.set(item, (map.get(item) || 0) + 1));
+
+  for (let times of map.values()) {
+    max = Math.max(max, times);
+  }
+
+  let ans = [];
+  [...map].forEach((item) => {
+    let [num, times] = item;
+    if (times === max) ans.push(num);
+  });
+
+  if (ans.length === 1) return ans[0];
+  return -1;
+}
+
 solution([1, 2, 3, 3, 3, 4]); // 3
 
 solution([0, 1, 2, 2, 3, 3, 3, 4]); // 3

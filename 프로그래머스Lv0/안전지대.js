@@ -165,6 +165,46 @@ function solution(board) {
   }, 0);
 }
 
+// 안전지역 : 0,      지뢰 : 1,      위험지대 : 3
+// 1. board에 1로 표시된 지역이 있다면 상 하 좌 우 대각의 값을 위험지대(3)로 바꾼다. 단 1이 아닌경우
+// 1-1 1이 아닌경우를 해준 이유는 1을 남겨놔야 또 지뢰(1)를 기준으로 위험지대를 만들어야 되기 때문
+
+// 2. 안전지역(0)의 개수를 count해서 출력한다.
+
+function solution(board) {
+  let len = board.length;
+  let dx = [1, 1, 1, 0, -1, -1, -1, 0];
+  let dy = [-1, 0, 1, 1, 1, 0, -1, -1];
+  let [sx, sy] = [0, 0];
+
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len; j++) {
+      if (board[i][j] === 1) {
+        bfs(i, j);
+      }
+    }
+  }
+
+  function bfs(i, j) {
+    for (let k = 0; k < 8; k++) {
+      let [nx, ny] = [i + dx[k], j + dy[k]];
+      if (0 <= nx && nx < len && ny >= 0 && ny < len) {
+        if (board[nx][ny] !== 1) {
+          board[nx][ny] = 3;
+        }
+      }
+    }
+  }
+
+  let cnt = 0;
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len; j++) {
+      if (board[i][j] === 0) cnt++;
+    }
+  }
+  return cnt;
+}
+
 solution([
   [0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0],

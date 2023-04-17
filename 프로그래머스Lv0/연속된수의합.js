@@ -78,9 +78,34 @@ function solution(num, total) {
   return res;
 }
 
-// solution(3, 12); // [3, 4, 5]
+// 1. -50부터 100까지 모든 숫자를 탐색해줍니다.
+// 1-1 -50부터인 이유는 -50 ~ 50 까지 약 100개를 더한경우가 최소값(?)이기 때문
 
-// solution(5, 15); // [1, 2, 3, 4, 5]
+// 2. 모든 숫자를 num만큼 연속된 숫자의 총 합이 total이라면 연속된 숫자를 출력해줍니다.
+
+function solution(num, total) {
+  let i = -50;
+  let ans = [];
+
+  while (i <= 100) {
+    let temp = [];
+    let k = i;
+    for (let j = 0; j < num; j++) {
+      temp.push(k++);
+    }
+    let sum = temp.reduce((a, c) => a + c, 0);
+    if (sum === total) {
+      ans = temp;
+      break;
+    }
+    i++;
+  }
+  return ans;
+}
+
+solution(3, 12); // [3, 4, 5]
+
+solution(5, 15); // [1, 2, 3, 4, 5]
 
 solution(4, 14); //[2, 3, 4, 5]
 
