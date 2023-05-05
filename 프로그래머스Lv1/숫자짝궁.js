@@ -79,6 +79,34 @@ function solution(X, Y) {
     .join('');
 }
 
+// Y를 돌면서 map에 값을 담아줍니다.
+// X를 돌면서 map에 값이 있는경우 temp에 담아주고, map에서 값을 1개 제거 해줍니다.
+// temp에 값이 비어있는 경우 -1을 출력합니다.
+// temp에 값이 '00' 과 같이 0으로만 구성 된 경우 0을 출력합니다.
+// 나머지의 경우 temp를 내림차순으로 정렬한뒤 문자열로 바꿔 출력해줍니다.
+
+function solution(X, Y) {
+  let map = new Map();
+  let temp = [];
+
+  [...Y].forEach((num) => {
+    map.set(num, (map.get(num) || 0) + 1);
+  });
+
+  [...X].forEach((num) => {
+    if (map.get(num) > 0) {
+      temp.push(num);
+      map.set(num, map.get(num) - 1);
+    }
+  });
+  if (temp.length === 0) return '-1';
+  if (Number(temp.join('')) === 0) return '0';
+  return temp
+    .sort((a, b) => b - a)
+    .join('')
+    .toString();
+}
+
 solution('100', '2345'); // 	"-1"
 solution('100', '200'); // 	"0"
 solution('100', '123450'); // 	"10"
