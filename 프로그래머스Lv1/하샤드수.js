@@ -1,24 +1,19 @@
-// 양의정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야합니다.
-// Ex) 18의 자릿수는 1+8= 9 ,  18은 9로 나누어떨어지므로 18은 하샤드 수
-// 하샤드수인지 검사하는 함수
+// 1. 하샤드 숫자인지 확인한다.
+// 1-1. 각 자리수의 합을 구한다.
+// 1-2. 주어진 값인 x가 각 자리수의 합으로 나눠떨어지는지 확인한다.
+// 1-3. 1-2에서 나눠 떨어진다면 하샤드 수
+// 1-4. 1-2에서 나눠 떨어지지 않는다면 하샤드 수가 아니다.
 
-function solution(x) {
-  var answer = true;
+// 2. 하샤드수인경우 true, 아닌경우 false를 반환
 
-  // 1. 각 자리수를 더한다.
-  const sum = x
-    .toString()
-    .split('')
-    .reduce((acc, cur) => acc + Number(cur), 0);
+function checkHashad(x) {
+  const sum = [...String(x)].reduce((a, c) => a + Number(c), 0);
 
-  // 2. x가 각자릿수를 더한 sum으로 나눠지면 true 아니면 false를 출력
-
-  answer = x % sum === 0 ? true : false;
-
-  return answer;
+  return x % sum === 0 ? true : false;
 }
 
-solution(10); //	true
-solution(12); //	true
-solution(11); //false
-solution(13); //false
+function solution(x) {
+  const result = checkHashad(x);
+
+  return result;
+}

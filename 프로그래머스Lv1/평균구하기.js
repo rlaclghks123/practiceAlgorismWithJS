@@ -1,16 +1,10 @@
-// 정수를 담고있는 arr의 평균값을 return
+// 1. 정수를 담고 있는 배열 arr의 모든 값을 더한다.
+// 2. 1에서 구한 총 값에서 배열 arr의 개수를 나눠 평균값을 구한다.
+// 3. 평균값을 구한 arr를 return한다.
 
 function solution(arr) {
-  var answer = 0;
+  const sum = arr.reduce((a, c) => a + c, 0);
+  const len = arr.length;
 
-  // 1. reduce를 통해 각 요소를 모두 더해준다.
-  answer = arr.reduce((acc, cur) => {
-    return acc + cur;
-  }, 0);
-
-  // 2. 더한값을 arr의 총 길이로 나눠준다.
-  return answer / arr.length;
+  return sum / len;
 }
-
-solution([1, 2, 3, 4]); //2.5
-solution([5, 5]); // 5

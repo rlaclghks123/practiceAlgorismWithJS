@@ -1,22 +1,10 @@
-// 자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열을 return
+// 1. 자연수 n을 문자열로 바꾼다.
+// 2. 1에서 만든 문자열을 배열로 만들어 준다.
+// 3. 2에서 만든 배열을 뒤집는다.
+// 4. 3에서 뒤집은 배열을 모두 숫자형태로 만들어 출력한다.
+
 function solution(n) {
-  var answer = [];
+  const result = [...String(n)].reverse().map((num) => Number(num));
 
-  // 1. n을 문자열로 바꾼다.
-  answer = n
-    .toString()
-
-    // 2. 배열로 바꾼다.
-    .split('')
-
-    // 3. reverse를 통해 뒤집어준다.
-    .reverse()
-
-    // 4. 각 요소를 문자열 => 숫자로 바꿔준다.
-
-    .map((item) => Number(item));
-
-  return answer;
+  return result;
 }
-
-solution(12345); // [5,4,3,2,1]
