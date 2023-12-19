@@ -1,21 +1,16 @@
-// 최대 공약수와 최소공배수를 Return
+// 1. 최대 공약수를 구한다.
+// 2. 최소공배수를 구한다.
+// 3. [최대공약수, 최소공배수]를 출력한다.
 
-function gcdFn(a, b) {
-  if (b === 0) return a;
-  return gcdFn(b, a % b);
+function getGcd(n, m) {
+  if (m === 0) return n;
+
+  return getGcd(m, n % m);
 }
+
 function solution(n, m) {
-  var answer = [];
-
-  // 1. 최대공약수를 구해준다.
-  const gcd = gcdFn(n, m);
-
-  // 2. 최소 공배수를 구해준다.
+  const gcd = getGcd(n, m);
   const lcm = (n * m) / gcd;
-  answer = [gcd, lcm];
-  return answer;
+
+  return [gcd, lcm];
 }
-
-solution(3, 12); // [3, 12]
-
-solution(2, 5); // [1, 10]
