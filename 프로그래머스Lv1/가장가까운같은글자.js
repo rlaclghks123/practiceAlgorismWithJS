@@ -1,91 +1,23 @@
-// s의 각 위치마다 자신보다 앞에 나왔으면서 자신과 가장 가까운곳에 있는 글자를 찾기
+//  각 글자들을 왼쪽부터 오른쪽으로 읽어 나가면서 다음과 같이 진행할 수 있습니다.
+// b는 처음 나왔기 때문에 자신의 앞에 같은 글자가 없습니다. 이는 -1로 표현합니다.
+// a는 처음 나왔기 때문에 자신의 앞에 같은 글자가 없습니다. 이는 -1로 표현합니다.
+// n은 처음 나왔기 때문에 자신의 앞에 같은 글자가 없습니다. 이는 -1로 표현합니다.
+// a는 자신보다 두 칸 앞에 a가 있습니다. 이는 2로 표현합니다.
+// n도 자신보다 두 칸 앞에 n이 있습니다. 이는 2로 표현합니다.
+// a는 자신보다 두 칸, 네 칸 앞에 a가 있습니다. 이 중 가까운 것은 두 칸 앞이고, 이는 2로 표현합니다.
+// 따라서 최종 결과물은 [-1, -1, -1, 2, 2, 2]가 됩니다.
+// 문자열 s이 주어질 때, 위와 같이 정의된 연산을 수행하는 함수 solution을 완성해주세요.
 
-// function solution(s) {
-//   var answer = [];
-
-//   // 1. 문자열을 문자 하나씩 가져와 stack에 없으면 stack에 담고 answer에 -1을, stack에 있으면 answer에 index값을 담는다..
-//   let stack = [];
-//   [...s].forEach((item, i) => {
-//     if (!stack.includes(item)) {
-//       answer.push(-1);
-//     } else {
-//       let index = i;
-//       let count = 0;
-//       while (item !== stack[index]) {
-//         count++;
-//         index--;
-//         if (item === stack[index]) {
-//           answer.push(count);
-//           break;
-//         }
-//       }
-//     }
-//     stack.push(item);
-//   });
-
-//   return answer;
-// }
-
-// 다른사람 코드
-// slice(0,i)를 통해 마지막값을 제외하고 나머지를 잘라서 lastIndex값을 찾아, 현재값의 i에서 count의 차이를 구해주며, 음수일 경우 -1로 지정해준다.
-
-// const solution = (s) =>
-//   [...s].map((char, i) => {
-//     const count = s.slice(0, i).lastIndexOf(char);
-//     return count < 0 ? count : i - count;
-//   });
-
-// solution('banana'); //	[-1, -1, -1, 2, 2, 2]
-
-// solution('foobar'); //	[-1, -1, 1, -1, -1, -1]
+// 1. s를 순회하면서 해당 단어 앞까지 slice 한다.
+// 2. 만약 해당 단어 앞까지 slice한 문자열에 해당단어가 포함되어 있지 않다면 -1을
+// 3. 만약 해당 단어 앞까지 slice한 문자열에 해당단어가 포함되어 있다면 해당단어의 idx에서 해당단어가 slice한 문자열에서 뒤에서부터 idx값을 빼준다.
 
 function solution(s) {
-  const answer = [];
-  const stack = [1, 2, 3, 4];
-
-  [...s].forEach((item) => {
-    if (stack.includes(item)) {
-      answer.push(stack.length - stack.lastIndexOf(item));
-      stack.push(item);
-    } else {
-      stack.push(item);
-      answer.push(-1);
-    }
+  const answer = [...s].map((word, idx) => {
+    const sliced = s.slice(0, idx);
+    if (sliced.indexOf(word) === -1) return -1;
+    return idx - sliced.lastIndexOf(word);
   });
-  return answer;
-}
-
-function solution(s) {
-  let answer = [];
-  let stack = [];
-  [...s].forEach((char) => {
-    if (stack.includes(char)) {
-      answer.push(stack.length - stack.lastIndexOf(char));
-      stack.push(char);
-    } else {
-      stack.push(char);
-      answer.push(-1);
-    }
-  });
-  return answer;
-}
-
-function solution(s) {
-  let map = new Map();
-  let answer = [];
-  for (let i = 0; i < s.length; i++) {
-    if (!map.has(s[i])) {
-      answer.push(-1);
-      map.set(s[i], i);
-    } else {
-      answer.push(i - map.get(s[i]));
-      map.set(s[i], i);
-    }
-  }
 
   return answer;
 }
-
-solution('banana'); //	[-1, -1, -1, 2, 2, 2]
-
-solution('foobar'); //	[-1, -1, 1, -1, -1, -1]

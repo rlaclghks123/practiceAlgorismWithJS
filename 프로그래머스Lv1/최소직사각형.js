@@ -1,76 +1,15 @@
-// 모든 명함을 수납할 수 있는 가장 작은 지갑의 크기를 return
-// 둘중 더 큰값을 한곳에 몰아놓고, 큰값중에 큰값, 작은값중 큰값을 곱한다는 생각을 못했었음.
+// 가장 긴 가로 길이와 세로 길이가 각각 80, 70이기 때문에 80(가로) x 70(세로) 크기의 지갑을 만들면 모든 명함들을 수납할 수 있습니다.
+// 하지만 2번 명함을 가로로 눕혀 수납한다면 80(가로) x 50(세로) 크기의 지갑으로 모든 명함들을 수납할 수 있습니다.
+// 모든 명함의 가로 길이와 세로 길이를 나타내는 2차원 배열 sizes가 매개변수로 주어집니다.
+// 모든 명함을 수납할 수 있는 가장 작은 지갑을 만들 때, 지갑의 크기를 return 하도록 solution 함수를 완성해주세요.
+
+// 1. 가로와 세로를 비교하여 큰수를 가로로, 작은수를 세로로 옮긴다.
+// 2. 가로중에 가장큰 숫자와, 세로중에 가장 큰 숫자를 곱한다.
 
 function solution(sizes) {
-  var answer = [];
-  let width = [];
-  let height = [];
-  // 1. 가로와 세로의 크기를 비교해서 큰값은 0번째 배열에, 작은값은 1번째 배열에 담아준다.
-  sizes = sizes.map((item) => (item[0] < item[1] ? [item[1], item[0]] : [item[0], item[1]]));
+  const mapped = sizes.map(([left, right]) => (left > right ? [left, right] : [right, left]));
+  const rows = mapped.map(([left]) => left);
+  const cols = mapped.map(([_, right]) => right);
 
-  // 2. sizes의 모든 요소를 돌면서 가로와 세로 배열에 값을 담아준다.
-  for (let i = 0; i < sizes.length; i++) {
-    width.push(sizes[i][0]);
-    height.push(sizes[i][1]);
-  }
-
-  // 3. 가로의 최대값과 세로의 최대값을 곱해준다.
-  answer = Math.max(...width) * Math.max(...height);
-  return answer;
+  return Math.max(...rows) * Math.max(...cols);
 }
-
-// 다시풀기
-function solution(sizes) {
-  var answer = 0;
-  const leftMap = sizes
-    .map((item) => {
-      const [left, right] = item;
-      return left < right ? [right, left] : [left, right];
-    })
-    .map((item) => item[0]);
-
-  const rightMap = sizes
-    .map((item) => {
-      const [left, right] = item;
-      return left < right ? [right, left] : [left, right];
-    })
-    .map((item) => item[1]);
-  return Math.max(...leftMap) * Math.max(...rightMap);
-}
-
-function solution(sizes) {
-  let left = sizes.map((item) => {
-    let [l, r] = item;
-    return l < r ? l : r;
-  });
-
-  let right = sizes.map((item) => {
-    let [l, r] = item;
-    return l < r ? r : l;
-  });
-
-  return Math.max(...left) * Math.max(...right);
-}
-
-solution([
-  [60, 50],
-  [30, 70],
-  [60, 30],
-  [80, 40],
-]); //4000
-
-// solution([
-//   [10, 7],
-//   [12, 3],
-//   [8, 15],
-//   [14, 7],
-//   [5, 15],
-// ]); //	120
-
-// solution([
-//   [14, 4],
-//   [19, 6],
-//   [6, 16],
-//   [18, 7],
-//   [7, 11],
-// ]); //	133

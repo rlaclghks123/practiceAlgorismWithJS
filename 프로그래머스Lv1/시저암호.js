@@ -1,50 +1,27 @@
-// 각 알파벳을 일정 거리만큼 밀어서 다른 알파벳으로 바꾸는걸 시저 암호라고 함
-// Ex) AB는 1만큼 밀면 BC가 되고, 3만큼 밀면 DE가 된다. z는 1만큼 밀면 a가 된다.
-// 문자열 s를 거리 n만큼 민 암호문을 만드는 함수를 return
+// 어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다.
+// 예를 들어 "AB"는 1만큼 밀면 "BC"가 되고, 3만큼 밀면 "DE"가 됩니다. "z"는 1만큼 밀면 "a"가 됩니다.
+// 문자열 s와 거리 n을 입력받아 s를 n만큼 민 암호문을 만드는 함수, solution을 완성해 보세요.
+
+// 1. s를 아스키코드로 바꾼다.
+// 2. 1에서 구한 숫자에 n만큼 더한다.
+// 2-1 공백은 그대로 공백으로
+// 2-2 'z'다음엔 'a'가 오도록 한다.
+// 2-3 'Z' 다음엔 'A'가 오도록 한다.
+// 3. 2에서 구한 숫자를 다시 문자로 바꾼다.
+
+// a:97, z:122
+// A:65, Z:90
 
 function solution(s, n) {
-  var answer = '';
-
-  // 1. 문자열을 각 알파벳으로 나눠 배열에 담아준다.
-  answer = s.split('').map((item) => {
-    // 2. 각 알파벳을 돌면서 아스키코드로 바꿔 n의 값을 더해준다.
-
-    let newWord = item.charCodeAt(0) + n;
-    // 2-1 공백인 경우 공백을 출력한다.
-    if (item === ' ') return ' ';
-    // 3. 소문자인 경우 소문자는 97~122이다. 따라서 123이 넘어가면 97로 바꿔준다.
-    else if (item.charCodeAt(0) <= 122 && newWord >= 123) {
-      newWord = newWord - 26;
-    }
-
-    // 4. 대문자인 경우,  대문자는 65~90이다. 따라서 91이 넘어가면 65로 바꿔준다.
-    else if (newWord >= 91 && item.charCodeAt(0) <= 90) {
-      newWord = newWord - 26;
-    }
-
-    // 5. 아스키코드르 문자로 바꿔준다.
-    return String.fromCharCode(newWord);
+  const ascki = [...s].map((word) => {
+    const charCode = word.charCodeAt();
+    if (charCode === 32) return charCode;
+    if (charCode + n > 122) return 97 + ((charCode + n) % 122) - 1;
+    if (charCode + n > 90 && charCode < 97) return 65 + ((charCode + n) % 90) - 1;
+    return charCode + n;
   });
 
-  // 6. 문자열로 바꿔준다.
+  const answer = ascki.map((charCode) => String.fromCharCode(charCode)).join('');
 
-  return answer.join('');
-}
-
-solution('AB', 1); // 	"BC"
-
-solution('z', 1); // "a"
-
-solution('a B z', 4); // "e F d"
-
-// 다른사람의 코드
-// chars의 문자열에 소문자와 대문자 모두 2번씩 넣어두고 기존의 값에 n을 더한 값을 찾아준다.
-// 만약 n의 범위가 커진다면 이 방법은 못쓸듯
-function solution(s, n) {
-  var chars =
-    'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXY                          ';
-  return s
-    .split('')
-    .map((e) => chars[chars.indexOf(e) + n])
-    .join('');
+  return answer;
 }
