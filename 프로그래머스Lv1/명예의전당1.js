@@ -1,86 +1,22 @@
-// 매일 출연한 가수의 점수가 지금까지 출연 가수들의 점수 중 상위 k번째 이내에면 해당 가수의 점수가 명예의 전당에 올라감
-// k일까지는 모든 가수의 점수가 명예의 전당에 오름
-// 매일 발표된 명예의 전당의 최하위 점수를 return
+// 매일 출연한 가수의 점수가 지금까지 출연 가수들의 점수 중 상위 k번째 이내이면 해당 가수의 점수를 명예의 전당이라는 목록에 올려 기념합니다
+// k일 다음부터는 출연 가수의 점수가 기존의 명예의 전당 목록의 k번째 순위의 가수 점수보다 더 높으면, 출연 가수의 점수가 명예의 전당에 오르게 되고 기존의 k번째 순위의 점수는 명예의 전당에서 내려오게 됩니다.
 
-// function solution(k, score) {
-//   let answer = [];
-//   let arr = [];
-
-//   // 1. score배열을 돌면서 arr에 담아준다.
-
-//   for (let i = 0; i < score.length; i++) {
-//     arr.push(score[i]);
-
-//     // 2. 내림차순으로 정렬해준다.
-//     arr.sort((a, b) => b - a);
-
-//     // 3. 만약 arr가 k의 크기만큼 꽉 찼으면 arr의 마지막요소(가장 작은값)을 answer에 담아주고 continue;
-//     if (arr.length > k) {
-//       answer.push(arr[k - 1]);
-//       continue;
-//     }
-
-//     // 4. arr가 k의 크기만큼 차지 않았으면 peek값을(가장 작은값) answer에 담아준다
-//     answer.push(arr[arr.length - 1]);
-//   }
-
-//   return answer;
-// }
+// 1. score를 순회하면서 확인한다.
+// 1-1 명예의 전당에 점수를 올린다.
+// 1-2 명예의 전당에 있는 점수들을 내림차순으로 정렬한다.
+// 1-3 정렬된 명예의 전당점수들을 k개만큼 짜른다.
+// 1-4 제일 작은 점수를 answer에 담아준다.
+// 2. answer배열을 출력한다.
 
 function solution(k, score) {
-  var answer = [];
-  let stack = [];
-
-  for (let i = 0; i < score.length; i++) {
-    stack.push(score[i]);
-    stack.sort((a, b) => b - a);
-
-    if (stack.length > k) {
-      answer.push(stack[k - 1]);
-      continue;
-    }
-
-    answer.push(stack[stack.length - 1]);
-  }
-  console.log(answer);
-  return answer;
-}
-
-function solution(k, score) {
-  var answer = [];
-  const res = [];
-  for (let i = 0; i < score.length; i++) {
-    answer.push(score[i]);
-    answer.sort((a, b) => b - a);
-
-    if (answer.length > k) {
-      answer.pop();
-    }
-
-    res.push(answer[answer.length - 1]);
-  }
-
-  return res;
-}
-
-function solution(k, score) {
-  let answer = [];
-  let stack = [];
+  const answer = [];
+  let symbols = [];
 
   score.forEach((num) => {
-    stack.push(num);
-
-    stack.sort((a, b) => b - a);
-
-    if (stack.length > k) stack.pop();
-
-    answer.push(stack[stack.length - 1]);
+    symbols.push(num);
+    symbols = symbols.sort((a, b) => b - a).slice(0, k);
+    answer.push(symbols[symbols.length - 1]);
   });
+
   return answer;
 }
-
-solution(3, [10, 100, 20, 150, 1, 100, 200]); // [10, 10, 10, 20, 20, 100, 100]
-
-solution(4, [0, 300, 40, 300, 20, 70, 150, 50, 500, 1000]); // [0, 0, 0, 0, 20, 40, 70, 70, 150, 300]
-
-solution(9, [10, 30, 40, 3, 0, 20, 4]); // [10, 10, 10, 3, 0, 0, 0]

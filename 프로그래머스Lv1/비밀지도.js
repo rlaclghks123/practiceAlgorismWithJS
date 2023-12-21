@@ -1,41 +1,22 @@
-// 한 변의 길이가 n인 각 칸은 공백 (" ") 또는 벽("#") 두 종류로 되어있다.
-// 전체 지도는 두 장의 지도를 겹쳐서 얻는다, 각 지도 중 어느 하나라도 벽인 부분은 벽
-// 모두 공백인 부분은 전체지도에서 공백
-// 암호화된 배열은 벽을 1, 공백은 0으로 부호화 했을때 얻는 이진수에 해당하는 값의 배열
-// 암호를 해독한 지도를 return
+//  지도는 한 변의 길이가 n인 정사각형 배열 형태로, 각 칸은 "공백"(" ") 또는 "벽"("#") 두 종류로 이루어져 있다.
+//  전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 각각 "지도 1"과 "지도 2"라고 하자.
+// 지도 1 또는 지도 2 중 어느 하나라도 벽인 부분은 전체 지도에서도 벽이다.
+// 지도 1과 지도 2에서 모두 공백인 부분은 전체 지도에서도 공백이다.
+// "지도 1"과 "지도 2"는 각각 정수 배열로 암호화되어 있다.
+// 암호화된 배열은 지도의 각 가로줄에서 벽 부분을 1, 공백 부분을 0으로 부호화했을 때 얻어지는 이진수에 해당하는 값의 배열이다.
+
+// 1. 지도1, 지도2를 n의 개수에 맞춰서 2진법으로 바꾼다. 개수가 맞지 않는다면 0으로 채워준다.
+// 2. 지도의 정수를 순회하면서 하나라도 벽이면 벽으로, 아니면 공백으로 만들어준다.
+// 3. 2에서 만든 값을 문자열로 바꾼 배열로 출력한다.
 
 function solution(n, arr1, arr2) {
-  var answer = [];
+  const first = arr1.map((num) => num.toString(2).padStart(n, '0'));
+  const second = arr2.map((num) => num.toString(2).padStart(n, '0'));
 
-  // 1. arr1, arr2의 각 10진수 값을 2진수로 바꾼다.
-  arr1 = arr1.map((item) => {
-    if (item.toString(2).length <= n) {
-      let temp = '';
-      for (let i = 0; i < n - item.toString(2).length; i++) {
-        temp += '0';
-      }
-      return temp + item.toString(2);
-    }
-  });
-
-  arr2 = arr2.map((item) => {
-    if (item.toString(2).length <= n) {
-      let temp = '';
-      for (let i = 0; i < n - item.toString(2).length; i++) {
-        temp += '0';
-      }
-      return temp + item.toString(2);
-    }
-  });
-
-  // 2. arr1의 문자와 Arr2의 문자를 비교해서 1개라도 1이 존재한다면 1로 return
-  answer = arr1.map((item, index) => {
-    return item
-      .split('')
-      .map((char, indexChar) => {
-        if (char === '1' || arr2[index][indexChar] === '1') {
-          return '#';
-        }
+  const answer = first.map((nums, idx) => {
+    return [...nums]
+      .map((num, idx2) => {
+        if (num === '1' || second[idx][idx2] === '1') return '#';
         return ' ';
       })
       .join('');
@@ -43,15 +24,3 @@ function solution(n, arr1, arr2) {
 
   return answer;
 }
-
-solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]);
-// ["#####","# # #", "### #", "# ##", "#####"]
-
-solution(6, [46, 33, 33, 22, 31, 50], [27, 56, 19, 14, 14, 10]); //  ["######", "### #", "## ##", " #### ", " #####", "### # "]
-
-// 다른사람의 코드
-// padStart를 통해 0을 추가했다.
-// 1이라는걸 true로 사용해서 a|b[i]로 처리했다.
-
-var solution = (n, a, b) =>
-  a.map((a, i) => (a | b[i]).toString(2).padStart(n, 0).replace(/0/g, ' ').replace(/1/g, '#'));

@@ -1,46 +1,20 @@
-// 중앙에 물을 배치하고 한 선수는 맨왼쪽부터 맨오른쪽, 다른선수는 맨 오른쪽부터 맨왼쪽으로
-// 준비한 음식의 양을 칼로리가 적은 순서대로 나타내는 정수배열 food를 통해 대회를 위한 음식배치 문자열 reutrn
+// 대회에서 선수들은 1대 1로 대결하며, 매 대결마다 음식의 종류와 양이 바뀝니다
+// 대결은 한 선수는 제일 왼쪽에 있는 음식부터 오른쪽으로, 다른 선수는 제일 오른쪽에 있는 음식부터 왼쪽으로 순서대로 먹는 방식으로 진행됩니다.
+// 중앙에는 물을 배치하고, 물을 먼저 먹는 선수가 승리하게 됩니다.
+// 대회의 공정성을 위해 두 선수가 먹는 음식의 종류와 양이 같아야 하며, 음식을 먹는 순서도 같아야 합니다.
+// 칼로리가 낮은 음식을 먼저 먹을 수 있게 배치하여 선수들이 음식을 더 잘 먹을 수 있게 하려고 합니다.
+
+// 1. 왼쪽을 구한다.
+// 2. 왼쪽을 reverse를 통해 오른쪽을 구한다.
+// 3. 왼쪽 + '0' + 오른쪽 으로 대회를 위한 배치를 나타낸다.
 
 function solution(food) {
-  var answer = '';
-  let test = [];
-  let test2 = [];
-  food.forEach((item, index) => {
-    if (index === 0) return;
-    test.push(index.toString().repeat(Math.floor(item / 2)));
-    test2.unshift(index.toString().repeat(Math.floor(item / 2)));
+  const left = food.slice(1).map((num, idx) => {
+    const divide = Math.floor(num / 2);
+    return divide > 0 ? `${idx + 1}`.repeat(divide) : '';
   });
-  answer += test.join('');
-  answer += '0';
-  answer += test2.join('');
 
-  return answer;
-}
+  const right = [...left].reverse();
 
-solution([1, 3, 4, 6]); //	"1223330333221"
-
-solution([1, 7, 1, 2]); //	"111303111"
-
-// 다른사람의 코드
-// food를 반복하여 문자로 바꾸고 절반값을 res에 더해준다.
-// 0을 더한 뒤,  res를 뒤집은 값을 다시 더해준다.
-
-// function solution(food) {
-//   let res = '';
-//   for (let i = 1; i < food.length; i++) {
-//     res += String(i).repeat(Math.floor(food[i] / 2));
-//   }
-
-//   return res + '0' + [...res].reverse().join('');
-// }
-
-function solution(food) {
-  var answer = '';
-
-  for (let i = 1; i < food.length; i++) {
-    answer += i.toString().repeat(Math.floor(food[i] / 2));
-  }
-  answer = answer + '0' + [...answer].reverse().join('');
-  console.log(answer);
-  return answer;
+  return left.join('') + '0' + right.join('');
 }
