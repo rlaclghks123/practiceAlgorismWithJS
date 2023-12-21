@@ -37,7 +37,17 @@
  - [x] [최소직사각형](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%B5%9C%EC%86%8C%EC%A7%81%EC%82%AC%EA%B0%81%ED%98%95.js)
  - [x] [시저 암호](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%8B%9C%EC%A0%80%EC%95%94%ED%98%B8.js)
  - [x] [숫자 문자열과 영단어](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%98%81%EB%8B%A8%EC%96%B4.js)
- - [x] [가장 가까운 같은 글자](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EA%B0%80%EC%9E%A5%EA%B0%80%EA%B9%8C%EC%9A%B4%EA%B0%99%EC%9D%80%EA%B8%80%EC%9E%90.js) 
+ - [x] [가장 가까운 같은 글자](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EA%B0%80%EC%9E%A5%EA%B0%80%EA%B9%8C%EC%9A%B4%EA%B0%99%EC%9D%80%EA%B8%80%EC%9E%90.js)
+ - [x] [문자열 내 마음대로 정렬하기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%AC%B8%EC%9E%90%EC%97%B4%EB%82%B4%EB%A7%98%EB%8C%80%EB%A1%9C%EC%A0%95%EB%A0%AC%ED%95%98%EA%B8%B0.js)
+ - [x] [K번째수](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/k%EB%B2%88%EC%A7%B8%EC%88%98.js)
+ - [x] [푸드 파이트 대회](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%ED%91%B8%EB%93%9C%ED%8C%8C%EC%9D%B4%ED%8A%B8%EB%8C%80%ED%9A%8C.js)
+ - [x] [[1차] 비밀지도](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%B9%84%EB%B0%80%EC%A7%80%EB%8F%84.js)
+ - [x] [두 개 뽑아서 더하기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%91%90%EA%B0%9C%EB%BD%91%EC%95%84%EC%84%9C%EB%8D%94%ED%95%98%EA%B8%B0.js)
+ - [x] [콜라 문제](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%BD%9C%EB%9D%BC%EB%AC%B8%EC%A0%9C.js)
+ - [x] [추억 점수](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%B6%94%EC%96%B5%EC%A0%90%EC%88%98.js)
+ - [x] [명예의 전당](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%AA%85%EC%98%88%EC%9D%98%EC%A0%84%EB%8B%B91.js)
+ - [x] [카드 뭉치](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%B9%B4%EB%93%9C%EB%AD%89%EC%B9%98.js)
+ - [x] [2016년](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/2016.js) 
 
 
 # 자료구조
