@@ -1,27 +1,14 @@
-// n마리의 폰켄몬 중 n/2마리를 가져가도 ㅗ딘다.
-// 4마리의 폰켄몬중 2마리를 고르는 방법은 6가지 중 최대한 다양한 종류의 폰켄몬을 가져가는 수
-function solution(nums) {
-  var answer = 0;
+// 홍 박사님은 당신에게 자신의 연구실에 있는 총 N 마리의 폰켓몬 중에서 N/2마리를 가져가도 좋다고 했습니다.
+// 최대한 다양한 종류의 폰켓몬을 가지길 원하기 때문에, 최대한 많은 종류의 폰켓몬을 포함해서 N/2마리를 선택하려 합니다.
 
-  // 1. 최대 가져갈수 있는 폰켄몬의 마릿수를 구해준다.
+// 1. set을 통해 중복된 종류를 제거한다.
+// 2. n/2개보다 중복된 종류가 많다면 n/2개를 출력
+// 3. n/2개보다 중복된 종류가 적다면 중복된 종류를 출력
+
+function solution(nums) {
+  const set = new Set(nums);
+  const phoneCatMon = set.size;
   const max = nums.length / 2;
 
-  // 2. set을 통해 중복되는 부분을 제거해준다.
-  const set = [...new Set([...nums])].length;
-
-  // 3. 서로 다른 폰켄몬중 max마리를 구해준다.
-  answer = set >= max ? max : set;
-
-  return answer;
+  return max < phoneCatMon ? max : phoneCatMon;
 }
-
-solution([3, 1, 2, 3]); //	2
-
-solution([3, 3, 3, 2, 2, 4]); // 3
-
-solution([3, 3, 3, 2, 2, 2]); // 2
-
-//다른 사람의 코드
-// 다른부분은 같지만 set의 size를 이용해 구해줬다.
-
-const set = new Set([...nums]).size;
