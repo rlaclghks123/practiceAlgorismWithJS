@@ -47,7 +47,11 @@
  - [x] [추억 점수](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%B6%94%EC%96%B5%EC%A0%90%EC%88%98.js)
  - [x] [명예의 전당](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%AA%85%EC%98%88%EC%9D%98%EC%A0%84%EB%8B%B91.js)
  - [x] [카드 뭉치](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%B9%B4%EB%93%9C%EB%AD%89%EC%B9%98.js)
- - [x] [2016년](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/2016.js) 
+ - [x] [2016년](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/2016.js)
+ - [x] [폰켓몬](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%ED%8F%B0%EC%BC%84%EB%AA%AC.js)
+ - [x] [과일 장수](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EA%B3%BC%EC%9D%BC%EC%9E%A5%EC%88%98.js)
+ - [x] [소수 만들기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%86%8C%EC%88%98%EB%A7%8C%EB%93%A4%EA%B8%B0.js)
+ - [x] [소수 찾기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%86%8C%EC%88%98%EC%B0%BE%EA%B8%B0.js)  
 
 
 # 자료구조
