@@ -1,62 +1,27 @@
-const oneAnswer = [1, 2, 3, 4, 5];
-const twoAnswer = [2, 1, 2, 3, 2, 4, 2, 5];
-const threeAnswer = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
-// 가장 많이 맞힌 사람을 return
+// 1번 문제부터 마지막 문제까지의 정답이 순서대로 들은 배열 answers가 주어졌을 때, 가장 많은 문제를 맞힌 사람을 찾아 출력
+// 가장 높은 점수를 받은 사람이 여럿일 경우, return하는 값을 오름차순 정렬해주세요.
+
+// 1. 1번 수포자, 2번 수포자, 3번 수포자가 찍는 방식을 정해둔다.
+// 2. answer를 돌면서 1,2,3번 수포자 정답을 비교한다.
+// 3. 가장 점수 높은 사람을 출력한다. 만약 여러명일 경우 여러명을 출력
 
 function solution(answers) {
-  var answer = [];
-  let one = 0;
-  let two = 0;
-  let three = 0;
+  const first = [1, 2, 3, 4, 5];
+  const second = [2, 1, 2, 3, 2, 4, 2, 5];
+  const third = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
 
-  // 1. 맞춘 개수를 count 한다.
-  answers.forEach((item, index) => {
-    if (item === oneAnswer[index % 5]) one++;
-    if (item === twoAnswer[index % 8]) two++;
-    if (item === threeAnswer[index % 10]) three++;
+  const cnt = [0, 0, 0];
+
+  answers.forEach((ans, idx) => {
+    if (ans === first[idx % first.length]) cnt[0] += 1;
+    if (ans === second[idx % second.length]) cnt[1] += 1;
+    if (ans === third[idx % third.length]) cnt[2] += 1;
   });
 
-  // 2. 맞춘 개수를 비교해준다.
-  const max = Math.max(one, Math.max(two, three));
+  const max = Math.max(...cnt);
 
-  if (one === max) answer.push(1);
-  if (two === max) answer.push(2);
-  if (three === max) answer.push(3);
-  console.log(answer.sort((a, b) => a - b));
-  // 3. 오름차순으로 정렬해준다.
-  return answer.sort((a, b) => a - b);
+  return cnt
+    .map((num, idx) => (num === max ? idx + 1 : 0))
+    .filter((item) => item)
+    .sort((a, b) => a - b);
 }
-
-function solution(answers) {
-  let n = answers.length;
-  let oneCnt = 0;
-  let twoCnt = 0;
-  let threeCnt = 0;
-
-  for (let i = 0; i < n; i++) {
-    let ans = answers[i];
-    let one = oneAnswer[i % 5];
-    let two = twoAnswer[i % 8];
-    let three = threeAnswer[i % 10];
-
-    if (ans === one) oneCnt++;
-    if (ans === two) twoCnt++;
-    if (ans === three) threeCnt++;
-  }
-  let res = [];
-  let max = Math.max(oneCnt, twoCnt, threeCnt);
-
-  if (max === oneCnt) res.push(1);
-  if (max === twoCnt) res.push(2);
-  if (max === threeCnt) res.push(3);
-
-  return res;
-}
-
-solution([1, 2, 3, 4, 5]); // 	[1]
-
-// solution([1, 3, 2, 4, 2]); //	[1,2,3]
-
-// solution([3, 3, 2, 1, 5]); // -> [3]
-
-// solution([5, 5, 4, 2, 3]); //  -> [1,2,3]
