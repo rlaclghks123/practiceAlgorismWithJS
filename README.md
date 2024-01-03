@@ -54,6 +54,8 @@
  - [x] [소수 만들기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%86%8C%EC%88%98%EB%A7%8C%EB%93%A4%EA%B8%B0.js)
  - [x] [소수 찾기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%86%8C%EC%88%98%EC%B0%BE%EA%B8%B0.js)
  - [x] [기사단원의 무기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EA%B8%B0%EC%82%AC%EB%8B%A8%EC%9B%90%EC%9D%98%EB%AC%B4%EA%B8%B0.js)
+ - [x] [덧칠하기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%8D%A7%EC%B9%A0%ED%95%98%EA%B8%B0.js)
+ - [x] [실패율](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%8B%A4%ED%8C%A8%EC%9C%A8.js)  
 
 
 # 자료구조
