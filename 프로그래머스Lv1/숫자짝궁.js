@@ -1,114 +1,34 @@
-// X, Y의 임의의 자리에서 공통으로 나타내는 정수들을 이용해 가장 큰 정수를 두 수의 짝궁
-// 짝궁이 존재하지 않으면 짝궁은 -1
-// 짝궁이 0으로만 구성되어 있다면 짝궁은 0
-// 두 수의 짝궁을 return
+// 두 정수 X, Y의 임의의 자리에서 공통으로 나타나는 정수 k(0 ≤ k ≤ 9)들을 이용하여 만들 수 있는 가장 큰 정수를 두 수의 짝꿍이라 합니다(단, 공통으로 나타나는 정수 중 서로 짝지을 수 있는 숫자만 사용합니다).
+// X, Y의 짝꿍이 존재하지 않으면,짝꿍은 -1입니다.
+// X, Y의 짝꿍이 0으로만 구성되어 있다면, 짝꿍은 0입니다.
 
-// 틀린 이유 : 시간 초과에 의해 풀지못함
-// 다른사람 코드 : map을 활용해서, map에 값이 있는지 없는지 확인을 했다.
-// x<=y
-
-// function solution(x, y) {
-//   let result = '';
-//   const map = new Map();
-
-//   // 1. 더 긴 y를 map에 담아준다.
-//   for (let i = 0; i < y.length; i++) {
-//     map.set(y[i], (map.get(y[i]) || 0) + 1);
-//   }
-
-//   // 2. 짧은 x를 돌면서 map의 value값이 1 이상인 경우(y에 존재하는 경우) -1을 해주고 result에 담아준다.
-//   for (let i = 0; i < x.length; i++) {
-//     if (map.get(x[i]) >= 1) {
-//       map.set(x[i], (map.get(x[i]) || 0) - 1);
-//       result += x[i];
-//     }
-//   }
-
-//   // 3. result에 아무것도 담기지 않았다면 -1을 return
-//   if (result.length < 1) return '-1';
-
-//   // 4. +를 통해 숫자로 바꾼뒤, 0이면 '0'을 return +를 해주는 이유는 '00' =>0으로 바꿔줌
-//   return +result === 0
-//     ? '0'
-//     : // 5. 내림차순을 통해 가장 큰수로 바꿔준뒤, return 한다.
-//       result
-//         .split('')
-//         .sort((a, b) => b - a)
-//         .join('');
-// }
-
-function solution(X, Y) {
-  var answer = [];
-  const map = new Map();
-
-  for (let i = 0; i < Y.length; i++) {
-    map.set(Y[i], (map.get(Y[i]) || 0) + 1);
-  }
-
-  for (let i = 0; i < X.length; i++) {
-    if (map.get(X[i]) > 0) {
-      map.set(X[i], (map.get(X[i]) || 0) - 1);
-      answer.push(X[i]);
-    }
-  }
-  if (answer.length === 0) return '-1';
-
-  const res = +answer.sort((a, b) => b - a).join('');
-  return String(res);
-}
+// 1. Y를 순회하면서 map에 담아줍니다.
+// 2. X를 순회합니다.
+// 2-1. map에 값이 존재하는 경우 처리를 해줍니다.
+// 2-1-1. 현재값이 마지막 1개라면 삭제해줍니다.
+// 2-1-2. 현재값이 마지막 1개가 아닌경우 1개를 제거해주고, partner에 담아줍니다.
+// 3. 겹치는 숫자가 없는 경우 -1을 출력
+// 4. 숫자형태로 바꿨을 경우 0이라면 '0'을 출력 Ex) '00'인 경우 0을 출력
+// 5. 3,4의 경우가 아닌 경우 최고숫자를 위해 내림차순으로 정렬해서 출력
 
 function solution(X, Y) {
   const map = new Map();
-  let answer = '';
+  const partner = [];
 
-  for (let i = 0; i < Y.length; i++) {
-    map.set(Y[i], (map.get(Y[i]) || 0) + 1);
-  }
+  [...Y].forEach((word) => map.set(word, (map.get(word) ?? 0) + 1));
 
-  for (let i = 0; i < X.length; i++) {
-    if (map.has(X[i]) && map.get(X[i]) > 0) {
-      answer += X[i];
-      map.set(X[i], map.get(X[i]) - 1);
-    }
-  }
-  if (answer.length === 0) return '-1';
-  if (+answer === 0) return '0';
-  return answer
-    .split('')
-    .sort((a, b) => b - a)
-    .join('');
-}
-
-// Y를 돌면서 map에 값을 담아줍니다.
-// X를 돌면서 map에 값이 있는경우 temp에 담아주고, map에서 값을 1개 제거 해줍니다.
-// temp에 값이 비어있는 경우 -1을 출력합니다.
-// temp에 값이 '00' 과 같이 0으로만 구성 된 경우 0을 출력합니다.
-// 나머지의 경우 temp를 내림차순으로 정렬한뒤 문자열로 바꿔 출력해줍니다.
-
-function solution(X, Y) {
-  let map = new Map();
-  let temp = [];
-
-  [...Y].forEach((num) => {
-    map.set(num, (map.get(num) || 0) + 1);
-  });
-
-  [...X].forEach((num) => {
-    if (map.get(num) > 0) {
-      temp.push(num);
-      map.set(num, map.get(num) - 1);
+  [...X].forEach((word) => {
+    if (map.has(word)) {
+      if (map.get(word) === 0) {
+        map.delete(word);
+        return;
+      }
+      map.set(word, map.get(word) - 1);
+      partner.push(word);
     }
   });
-  if (temp.length === 0) return '-1';
-  if (Number(temp.join('')) === 0) return '0';
-  return temp
-    .sort((a, b) => b - a)
-    .join('')
-    .toString();
-}
 
-solution('100', '2345'); // 	"-1"
-solution('100', '200'); // 	"0"
-solution('100', '123450'); // 	"10"
-solution('12321', '42531'); //  "321"
-solution('5525', '1255'); // "552"
+  if (partner.length === 0) return '-1';
+  if (Number(partner.join('')) === 0) return '0';
+  return partner.sort((a, b) => b - a).join('');
+}
