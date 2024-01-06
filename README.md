@@ -60,7 +60,8 @@
  - [x] [다트게임](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C/%EB%8B%A4%ED%8A%B8%EA%B2%8C%EC%9E%84.js)
  - [x] [로또의 최고 순위와 최저 순위](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%A1%9C%EB%98%90%EC%9D%98%EC%B5%9C%EA%B3%A0%EC%88%9C%EC%9C%84%EC%99%80%EC%B5%9C%EC%A0%80%EC%88%9C%EC%9C%84.js)
  - [x] [숫자 짝꿍](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%88%AB%EC%9E%90%EC%A7%9D%EA%B6%81.js)
-
+ - [x] [체육복](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%B2%B4%EC%9C%A1%EB%B3%B5.js)
+ - [x] [문자열 나누기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%AC%B8%EC%9E%90%EC%97%B4%EB%82%98%EB%88%84%EA%B8%B0.js)
 
 # 자료구조
 
