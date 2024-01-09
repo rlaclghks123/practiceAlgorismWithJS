@@ -63,6 +63,9 @@
  - [x] [체육복](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%B2%B4%EC%9C%A1%EB%B3%B5.js)
  - [x] [문자열 나누기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%AC%B8%EC%9E%90%EC%97%B4%EB%82%98%EB%88%84%EA%B8%B0.js)
 
+### Lv2 
+- [x] [최댓값 최솟값](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%B5%9C%EB%8C%80%EA%B0%92%EA%B3%BC%EC%B5%9C%EC%86%8C%EA%B0%92.js)
+- [x] [JadenCase 문자열 만들기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/JadenCase%EB%AC%B8%EC%9E%90%EC%97%B4%EB%A7%8C%EB%93%A4%EA%B8%B0.js)
 # 자료구조
 
 [블로그 참조](https://velog.io/@rlaclghks123/series)
