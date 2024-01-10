@@ -1,32 +1,39 @@
-function solution(keymap, targets) {
-  const keyMap = new Map();
+// 1. keymap을 순회하면서 map에 key값의 최소값(왼쪽부터 index의 최소값)을 담아줍니다.
+// 2. target을 순회하면서 map에 target값이 있는지 확인합니다.
+// 2-1. 만약 존재한다면 map에 있는 값을 담아줍니다.
+// 2-2. 만약 존재하지 않는다면 -1을 담아줍니다.
+// 3. 2에서 구한 값들을 answer에 담아줍니다.
+// 3-1. 단 이때 -1이 포함되어 있다면 -1을 담아주고, 아닌경우 모든값들의 합을 담아줍니다.
 
-  // keyMap에 등록된 문자열의 최소 횟수를 담아줍니다.
-  keymap.forEach((map) => {
-    for (let i = 0; i < map.length; i++) {
-      if (keyMap.has(map[i])) {
-        const idx = Math.min(i + 1, keyMap.get(map[i]));
-        keyMap.set(map[i], idx);
+function initKey(keymap) {
+  const map = new Map();
+
+  keymap.forEach((key) => {
+    [...key].forEach((keyWord, i) => {
+      if (map.has(keyWord)) {
+        const idx = Math.min(i + 1, map.get(keyWord));
+        map.set(keyWord, idx);
       } else {
-        keyMap.set(map[i], i + 1);
+        map.set(keyWord, i + 1);
       }
-    }
+    });
   });
 
-  let ans = [];
-  // targets를 돌면서 각 단어가 keyMap에 들어있는 횟수를 cnt에 담아줍니다.
-  targets.forEach((words) => {
-    let cnt = [];
-    [...words].forEach((char) => cnt.push(keyMap.get(char)));
+  return map;
+}
 
-    // 총 cnt의 합을 담아줍니다.
-    let sum = cnt.reduce((a, c) => a + c, 0);
+function solution(keymap, targets) {
+  const map = initKey(keymap);
+  let answer = [];
 
-    // 만약 값이 없다면 undefined가 섞여 있으면 NaN이 나오기 때문에 NaN이 된다면 -1을 ans에 담아줍니다.
-    if (Number.isNaN(sum)) ans.push(-1);
-    // 만약 값이 있다면 ans에 sum을 담아줍니다.
-    else ans.push(sum);
+  targets.forEach((target) => {
+    let res = [];
+    [...target].forEach((targetWord) => {
+      map.has(targetWord) ? res.push(map.get(targetWord)) : res.push(-1);
+    });
+
+    res.includes(-1) ? answer.push(-1) : answer.push(res.reduce((a, c) => a + c, 0));
   });
-  // ans를 출력합니다.
-  return ans;
+
+  return answer;
 }

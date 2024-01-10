@@ -1,56 +1,24 @@
-// // 참여한 선수들의 이름 participant
-// // 완주한 선수들의 이름 completion
-// // 완주하지 못한 이름을 return
-// // 동명이인이 있을수도
+// 마라톤에 참여한 선수들의 이름이 담긴 배열 participant
+// 완주한 선수들의 이름이 담긴 배열 completion
+// 완주하지 못한 선수의 이름을 return 하도록 solution 함수를 작성해주세요.
+// 참가자 중에는 동명이인이 있을 수 있습니다.
 
-// function solution(participant, completion) {
-//   let answer = [];
-
-//   let map = new Map();
-
-//   // 1. map에 값이 존재하면 +1을 존재하지않으면 1을 채워넣어준다.
-//   for (let i = 0; i < participant.length; i++) {
-//     map.set(participant[i], map.get(participant[i]) ? map.get(participant[i]) + 1 : 1);
-//   }
-
-//   // 2. map에서 완주한사람들은 -1을 해준다.
-//   for (let i = 0; i < completion.length; i++) {
-//     map.set(completion[i], map.get(completion[i]) - 1);
-//   }
-
-//   // 3. map에서 1이 남아있는 사람들을 추출해준다.
-//   return [...map]
-//     .filter((item) => item[1] === 1)
-//     .map((item) => item[0])
-//     .join('');
-// }
+// 1. participant를 순회하면서 map에 [참가자, 참가자수] 형태로 담아준다.
+// 2. completion를 순회하면서 map에 참가했던 참가자들을 1명씩 제거해준다.
+// 2-1. 만약 참가자가 0명이 되면 map에서 제거해준다.
+// 3. map에 남아있는 참가자들을 문자열 형태로 출력한다.
 
 function solution(participant, completion) {
-  var answer = '';
-
-  // 1. map에 값을 넣어준다.
   const map = new Map();
 
-  for (let i = 0; i < participant.length; i++) {
-    map.set(participant[i], map.get(participant[i]) ? map.get(participant[i]) + 1 : 1);
-  }
-
-  completion.forEach((item) => {
-    map.set(item, map.get(item) - 1);
+  participant.forEach((name) => {
+    map.has(name) ? map.set(name, map.get(name) + 1) : map.set(name, 1);
   });
 
-  answer = [...map]
-    .filter((item) => item[1] === 1)
-    .map((item) => item[0])
-    .join('');
-  return answer;
+  completion.forEach((name) => {
+    map.set(name, map.get(name) - 1);
+    if (map.get(name) === 0) map.delete(name);
+  });
+
+  return [...map.keys()].join('');
 }
-
-solution(['leo', 'kiki', 'eden'], ['eden', 'kiki']); //	"leo"
-
-solution(
-  ['marina', 'josipa', 'nikola', 'vinko', 'filipa'],
-  ['josipa', 'filipa', 'marina', 'nikola']
-); //	"vinko"
-
-solution(['mislav', 'stanko', 'mislav', 'ana'], ['stanko', 'ana', 'mislav']); //"mislav"
