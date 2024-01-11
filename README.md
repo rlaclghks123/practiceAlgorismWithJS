@@ -69,6 +69,7 @@
 - [x] [최댓값 최솟값](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%B5%9C%EB%8C%80%EA%B0%92%EA%B3%BC%EC%B5%9C%EC%86%8C%EA%B0%92.js)
 - [x] [JadenCase 문자열 만들기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/JadenCase%EB%AC%B8%EC%9E%90%EC%97%B4%EB%A7%8C%EB%93%A4%EA%B8%B0.js)
 - [x] [최솟값 만들기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%B5%9C%EC%86%9F%EA%B0%92%EB%A7%8C%EB%93%A4%EA%B8%B0.js)
+- [x] [올바른 괄호](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%98%AC%EB%B0%94%EB%A5%B8%EA%B4%84%ED%98%B8.js) 
 
 # 자료구조
 
