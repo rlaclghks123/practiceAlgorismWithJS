@@ -1,149 +1,16 @@
-// 1 2 3
-// 4 5 6
-// 7 8 9
-// * 0 #
+// 1. 왼쪽 손가락과 오른쪽 손가락의 시작 위치를 처음에 '*', '#'으로 정해줍니다.
 
-// 왼손 엄지손가락은 *
-// 오른손 엄지손가락은 # 에서 시작
-// 상하좌우 방향으로만 1칸 이동가능,
+// 2. 손가락의 움직임을 담을 ans의 초기값을 ''로 정해줍니다.
 
-// 1, 4, 7은 왼손 엄지손가락을 사용
-// 3, 6, 9는 오른손 엄지손가락을 사용
-// 2,5,8,0은 두 엄지손가락 중 더 가까운 엄지손가락 사용
-// 만약 거리가 같다면 오른손잡이는 오른손, 왼손잡이는 왼손
+// 3. numbers를 돌면서 번호를 순서대로 돌아줍니다.
+// 3-1  번호가 1,4,7인경우 왼쪽 손가락을 번호로 움직여주고, 움직임에 'L'을 추가합니다.
+// 3-2  번호가 3,6,9인경우 오른쪽 손가락을 번호로 움직여주고, 움직임에 'R'을 추가합니다.
+// 3-3  그 외의 경우 왼쪽 손가락과 누를번호의 위치 vs 오른쪽 손가락과 누를번호의 위치의 거리를 찾아줍니다.
 
-// 순서대로 누를 번호가 담긴 numbers, 왼손인지 오른손인지 hand
-// 번호를 왼손으로 눌렀는지, 오른손으로 눌렀는지를 문자열로 return
+// 3-4  거리가 같다면 왼손잡이는 왼쪽, 오른손잡이는 오른쪽손가락을 움직여주고, 움직임에 'L' 또는 'R'을 추가해줍니다.
+// 3-5  거리가 같지 않다면 거리가 짧은 손가락을 움직여주고, 움직임을 추가해줍니다.
 
-function solution(numbers, hand) {
-  var answer = '';
-
-  // 1. 왼손가락과 오른손가락의 시작 위치를 지정
-  let leftPosition = '*';
-  let rightPosition = '#';
-
-  // 2. number를 돌면서 번호에 따라 다르게 처리해준다.
-  numbers.forEach((number) => {
-    // 2-1  1, 4, 7인 경우 왼손가락을 움직이므로 L을 추가해주고, leftPosition을 변경
-    if (number === 1 || number === 4 || number === 7) {
-      answer += 'L';
-      leftPosition = number;
-      return;
-    }
-
-    // 2-2  3, 6, 9인 경우 오른손가락을 움직이므로 R을 추가해주고, rightPosition을 변경
-    if (number === 3 || number === 6 || number === 9) {
-      answer += 'R';
-      rightPosition = number;
-      return;
-    }
-
-    // 3 중간번호인 2, 5, 8, 0 인경우 가까운 손가락이 움직이기 때문에 거리를 찾아준다.
-    let leftDistance = getDistance(leftPosition, number);
-    let rightDistance = getDistance(rightPosition, number);
-
-    // 4. 거리가 같다면 왼손잡이는 왼손, 오른손잡이는 오른손 이동
-    if (leftDistance === rightDistance) {
-      if (hand === 'left') {
-        answer += 'L';
-        leftPosition = number;
-      }
-
-      if (hand === 'right') {
-        answer += 'R';
-        rightPosition = number;
-      }
-    }
-
-    // 5. 거리가 작은쪽 이동
-    if (leftDistance > rightDistance) {
-      answer += 'R';
-      rightPosition = number;
-    }
-
-    if (leftDistance < rightDistance) {
-      answer += 'L';
-      leftPosition = number;
-    }
-  });
-  return answer;
-}
-
-function getDistance(position, target) {
-  // keyPad를 Object로 지정해서 key값을 통해 위치를 결정
-  let keyPad = {
-    1: [0, 0],
-    2: [0, 1],
-    3: [0, 2],
-    4: [1, 0],
-    5: [1, 1],
-    6: [1, 2],
-    7: [2, 0],
-    8: [2, 1],
-    9: [2, 2],
-    '*': [3, 0],
-    0: [3, 1],
-    '#': [3, 2],
-  };
-
-  // 현재 위치와, 목표위치를 설정
-  let curPosition = keyPad[position];
-  let targetPosition = keyPad[target];
-
-  // 절대값을 통해 현재위치에서 목표위치를 구해서 return한다.
-  return (
-    Math.abs(targetPosition[0] - curPosition[0]) + Math.abs(targetPosition[1] - curPosition[1])
-  );
-}
-
-function solution(numbers, hand) {
-  var answer = '';
-  let leftPosition = '*';
-  let rightPosition = '#';
-
-  numbers.forEach((item) => {
-    if (item === 1 || item == 4 || item === 7) {
-      leftPosition = item;
-      answer += 'L';
-      return;
-    }
-
-    if (item === 3 || item == 6 || item === 9) {
-      rightPosition = item;
-      answer += 'R';
-      return;
-    }
-
-    let leftDistance = getDistance(leftPosition, item);
-    let rightDistance = getDistance(rightPosition, item);
-
-    if (leftDistance === rightDistance) {
-      if (hand === 'left') {
-        leftPosition = item;
-        answer += 'L';
-      }
-
-      if (hand === 'right') {
-        rightPosition = item;
-        answer += 'R';
-      }
-    }
-
-    if (leftDistance < rightDistance) {
-      leftPosition = item;
-      answer += 'L';
-      return;
-    }
-
-    if (leftDistance > rightDistance) {
-      rightPosition = item;
-      answer += 'R';
-    }
-  });
-  return answer;
-}
-
-function getDistance(position, target) {
+function getDistance(target, curNumber) {
   const keyPad = {
     1: [0, 0],
     2: [0, 1],
@@ -158,83 +25,59 @@ function getDistance(position, target) {
     0: [3, 1],
     '#': [3, 2],
   };
+  const [targetLeft, targetRight] = keyPad[target];
+  const [curLeft, curRight] = keyPad[curNumber];
 
-  const curPosition = keyPad[position];
-  const targetPosition = keyPad[target];
-
-  return (
-    Math.abs(curPosition[0] - targetPosition[0]) + Math.abs(curPosition[1] - targetPosition[1])
-  );
+  return Math.abs(targetLeft - curLeft) + Math.abs(targetRight - curRight);
 }
 
-solution([1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5], 'right'); // "LRLLLRLLRRL"
-
-solution([7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2], 'left'); //"LRLLRRLLLRR"
-
-solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 'right'); //	"LLRLLRLLRL"
-
-// 다시풀기
-// 123
-// 456
-// 789
-// *0#
-function getDistance(curPosition, target) {
-  const keyPad = {
-    1: [0, 0],
-    2: [0, 1],
-    3: [0, 2],
-    4: [1, 0],
-    5: [1, 1],
-    6: [1, 2],
-    7: [2, 0],
-    8: [2, 1],
-    9: [2, 2],
-    '*': [3, 0],
-    0: [3, 1],
-    '#': [3, 2],
-  };
-
-  let cur = keyPad[curPosition];
-  let tar = keyPad[target];
-
-  return Math.abs(cur[0] - tar[0]) + Math.abs(cur[1] - tar[1]);
+function moveHand(hand, number, answer, position) {
+  position[hand] = number;
+  answer += hand === 'left' ? 'L' : 'R';
+  return [answer, position];
 }
 
 function solution(numbers, hand) {
-  let ans = '';
-  let left = '*';
-  let right = '#';
+  let answer = '';
+  let position = {
+    left: '*',
+    right: '#',
+  };
 
-  numbers.forEach((item) => {
-    if (item === 1 || item === 4 || item === 7) {
-      left = item;
-      ans += 'L';
-      return;
-    }
-    if (item === 3 || item === 6 || item === 9) {
-      right = item;
-      ans += 'R';
-      return;
+  numbers.forEach((curNumber) => {
+    // 왼손이 움직이는 경우
+    if (curNumber === 1 || curNumber === 4 || curNumber === 7) {
+      [answer, position] = moveHand('left', curNumber, answer, position);
     }
 
-    let leftDistance = getDistance(left, item);
-    let rightDistance = getDistance(right, item);
+    // 오른손이 움직이는 경우
+    if (curNumber === 3 || curNumber === 6 || curNumber === 9) {
+      [answer, position] = moveHand('right', curNumber, answer, position);
+    }
 
-    if (leftDistance === rightDistance) {
-      if (hand === 'left') {
-        left = item;
-        ans += 'L';
-      } else {
-        right = item;
-        ans += 'R';
+    // 현재 위치와 가까운 손가락을 움직이는 경우
+    if (curNumber === 2 || curNumber === 5 || curNumber === 8 || curNumber === 0) {
+      const leftDistance = getDistance(position.left, curNumber);
+      const rightDistance = getDistance(position.right, curNumber);
+
+      // 왼쪽이 더 가까운 경우
+      if (leftDistance < rightDistance) {
+        [answer, position] = moveHand('left', curNumber, answer, position);
       }
-    } else if (leftDistance < rightDistance) {
-      left = item;
-      ans += 'L';
-    } else if (leftDistance > rightDistance) {
-      right = item;
-      ans += 'R';
+
+      // 오른쪽이 더 가까운 경우
+      if (leftDistance > rightDistance) {
+        [answer, position] = moveHand('right', curNumber, answer, position);
+      }
+
+      // 왼쪽과 오른쪽의 거리가 같은경우, 어느손잡이에 따라 다르게 처리
+      if (leftDistance == rightDistance) {
+        hand === 'left'
+          ? ([answer, position] = moveHand('left', curNumber, answer, position))
+          : ([answer, position] = moveHand('right', curNumber, answer, position));
+      }
     }
   });
-  return ans;
+
+  return answer;
 }
