@@ -1,38 +1,18 @@
-// 1. 같은 알파벳이 2개 붙어 있는 짝을 찾아 제거합니다.
-// 2. 1을 반복해서 문자열을 모두 제거한다면 종료
-// 성공적으로 수행하면 1 아니면 0을 return
+// 1. s를 순회하여 한 글자씩 확인한다.
+// 1-1. s는 문자열이므로 스프레드 문법...을 활용하여 배열로 만들어준다.
+// 2. ans의 마지막 값과 현재값이 같다면 ans의 마지막값을 제거해준다. pop()
+// 3. ans의 마지막 값과 현재값이 다르다면 ans에 현재값을 담아준다.
+// 4. ans의 0번째 값이 존재한다면 0, 존재하지 않는다면 1을 출력
+
+// 추가적으로 배열을 모두 확인 할 필요없이 배열에 값이 있는지 없는지만 확인하면 되고, 시간절약도 되므로 0번째 값만 확인
 
 function solution(s) {
-  var answer = 0;
-  let stack = [];
+  const ans = [];
 
-  for (let i = 0; i < s.length; i++) {
-    if (!stack || stack[stack.length - 1] !== s[i]) stack.push(s[i]);
-    else stack.pop();
-  }
-  return stack.length === 0 ? 1 : 0;
-}
-
-// solution('baabaa'); // 1
-// solution('cdcd'); // 0
-
-solution('abccba'); // 1
-solution('abcccba'); // 0
-solution('abccccbaaa'); // 1
-solution('abccaabaa'); // 0
-// solution('a'); // 0
-
-function solution(s) {
-  var answer = -1;
-
-  let stack = [];
-
-  [...s].forEach((item) => {
-    if (stack[stack.length - 1] === item) {
-      stack.pop();
-    } else {
-      stack.push(item);
-    }
+  [...s].forEach((char) => {
+    if (ans[ans.length - 1] === char) ans.pop();
+    else ans.push(char);
   });
-  return stack.length === 0 ? 1 : 0;
+
+  return ans[0] ? 0 : 1;
 }
