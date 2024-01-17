@@ -1,62 +1,36 @@
-// 1~n번의 개인정보
-// 모든달은 28일까지 있다고 가정
-// 오늘, 유효기간, 개인정보 수집일자를 인자로 받는다.
-// result는 1부터~
+// 1. 오늘 총 시간을 구합니다. 총시간 : year*12*28 + month*12 + day
+// 2. terms를 통해 `약간 종류 : 유효기간` 형태로 Map을 만들어 줍니다.
+// 3. privacies를 순회하며 오늘 총시간과, 유효기간의 총 시간을 구합니다.
+// 4. 유효기간이 남아있는 번호를 찾아 출력합니다.
 
-function solution(today, terms, privacies) {
-  var answer = [];
-  let key = {};
-  let [todayYear, todayMonth, todayDate] = today.split('.').map(Number);
-  const todaySum = todayYear * 12 * 28 + todayMonth * 28 + todayDate;
+function getTermMap(terms) {
+  const map = new Map();
 
-  terms.forEach((item) => {
-    const [type, month] = item.split(' ');
-    key = { ...key, [type]: +month };
+  terms.forEach((term) => {
+    const [target, month] = term.split(' ');
+    map.set(target, Number(month));
   });
 
-  privacies.forEach((item, i) => {
-    let [startDate, type] = item.split(' ');
-    let [year, month, date] = startDate.split('.').map(Number);
-
-    const sum = year * 12 * 28 + month * 28 + date + key[type] * 28;
-    if (sum <= todaySum) answer.push(i + 1);
-  });
-
-  return answer;
+  return map;
 }
 
-solution(
-  '2022.05.19',
-  ['A 6', 'B 12', 'C 3'],
-  ['2021.05.02 A', '2021.07.01 B', '2022.02.19 C', '2022.02.20 C']
-); // [1, 3]
+function calculateTotalTime(dateString, changeMonth = 0) {
+  const [year, month, day] = dateString.split('.');
+  const totalMonths = Number(year) * 12 + Number(month) + changeMonth;
+  return totalMonths * 28 + Number(day);
+}
 
-solution(
-  '2020.01.01',
-  ['Z 3', 'D 5'],
-  ['2019.01.01 D', '2019.11.15 Z', '2019.08.02 D', '2019.07.01 D', '2018.12.28 Z']
-); // [1, 4, 5]
+function solution(today, terms, privacies) {
+  const todayTotalTime = calculateTotalTime(today);
+  const termMap = getTermMap(terms);
+  const ans = [];
 
-// 다른사람의 코드
-// 날짜를 slice하지 않고 구조분해할당으로 구했다.
-//
+  privacies.forEach((privacy, idx) => {
+    const [date, term] = privacy.split(' ');
+    const privaciesTotalTime = calculateTotalTime(date, termMap.get(term));
 
-// function solution(today, terms, privacies) {
-//   var answer = [];
-//   var [year, month, date] = today.split('.').map(Number);
-//   var todates = year * 12 * 28 + month * 28 + date;
-//   var t = {};
-//   terms.forEach((e) => {
-//     let [a, b] = e.split(' ');
-//     t[a] = Number(b);
-//   });
+    if (todayTotalTime >= privaciesTotalTime) ans.push(idx + 1);
+  });
 
-//   privacies.forEach((e, i) => {
-//     var [day, term] = e.split(' ');
-//     day = day.split('.').map(Number);
-//     var dates = day[0] * 12 * 28 + day[1] * 28 + day[2] + t[term] * 28;
-//     if (dates <= todates) answer.push(i + 1);
-//   });
-
-//   return answer;
-// }
+  return ans;
+}
