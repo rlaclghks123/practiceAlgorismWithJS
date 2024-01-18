@@ -7,27 +7,29 @@
 // ["mumu", "kai", "soe",  "mine", "poe"]
 // ["mumu", "kai",  "mine", "soe",  "poe"]
 
-// 1. callings를 돌면서 callings의 index값을 찾는다.
-// 2. 찾은 선수와 그 앞의 선수를 바꿔준다.
+// 1. players을 통해 {player : idx} 형태로 Map에 담아줍니다.
+// 2. callings를 돌면서 callings의 index값을 Map에서 찾는다.
+// 3. 찾은 선수와 그 앞의 선수를 player에서 바꿔준다.
+// 4. Map에도 순서를 바꿔준다.
+
+// Map과 배열을 같이 쓴 이유는 이렇게 해야 map에 값,idx를 담는데 시간복잡도가 O(1)이며
+// idx를 찾아야 player에서 값을 바꾸는데 시가복잡도를 O(1)로 사용할 수 있기 때문이다.
+// idx를 찾지 않으면 배열에서 값을 빼고, 다시 넣어야 하는데 그러면 재배치가 일어나 시간이 오래 발생
 
 function solution(players, callings) {
-  let map = new Map();
-  // map에 key : name,  value : i값으로 초기화 해줍니다.
-  players.forEach((name, i) => map.set(name, i));
+  const map = new Map();
 
-  // callings를 돌면서 호출된 친구는 앞으로, 호출된 친구의 앞친구는 뒤로 바꿔줍니다.
-  callings.forEach((name) => {
-    // 호출된 친구의 idx값을 map에서 찾아줍니다.
-    let idx = map.get(name);
+  players.forEach((player, idx) => map.set(player, idx));
 
-    // 호출된 친구와 앞의 친구를 바꿔줍니다.
-    let temp = players[idx - 1];
-    players[idx - 1] = name;
-    players[idx] = temp;
+  callings.forEach((calledName) => {
+    const curIdx = map.get(calledName);
 
-    // 바꾼 친구들의 idx값을 map에서 바꿔줍니다.
-    map.set(name, map.get(name) - 1);
-    map.set(temp, map.get(name) + 1);
+    const target = players[curIdx - 1];
+    players[curIdx - 1] = calledName;
+    players[curIdx] = target;
+
+    map.set(target, curIdx);
+    map.set(calledName, curIdx - 1);
   });
 
   return players;

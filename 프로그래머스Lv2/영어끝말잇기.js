@@ -1,70 +1,27 @@
-// 1번부터 번호 순서대로 한 사람씩 차례대로 단어를 말합니다.
-// 마지막 사람이 단어를 말한 다음에는 다시 1번부터 시작합니다.
-// 앞사람이 말한 단어의 마지막 문자로 시작하는 단어를 말해야 합니다.
-// 이전에 등장했던 단어는 사용할 수 없습니다.
-// 한 글자인 단어는 인정되지 않습니다.
-// 가장 먼저 탈락하는 사람의 번호와 그 사람이 자신의 몇 번째 차례에 탈락하는지를 구해서 return
-// 정답은 [ 번호, 차례 ] 형태로 return 해주세요.
-// 만약 주어진 단어들로 탈락자가 생기지 않는다면, [0, 0]을 return 해주세요.
+// 1. 중복을 체크하기 위해 set을 만들어 줍니다.
+// 2. 0번째 값을 set에 담고, 지난 단어를 0번째 값으로 초기화 해줍니다.
+// 3. words를 순회하면서 각 단어들이 끝말잇기에 실패한다면 return 해줍니다.
+// 3-1. 실패조건1 : 지난단어의 마지막글자와 현재단어의 첫글자가 다른경우
+// 3-2. 실패조건2 : 중복된 단어인 경우(set에 존재하는지)
+// 3-3. 정답은 [번호, 차례] 형태로 출력
+// 4. 끝말잇기에 성공한다면 지난단어를 수정하고, set에 값을 담아줍니다.
+// 5. 모두가 끝말잇기를 성공한다면 [0,0]을 출력해줍니다.
 
 function solution(n, words) {
-  var answer = [];
-  const result = [];
-  let start = 0;
+  const set = new Set();
+  let lastWord = words[0];
+  set.add(lastWord);
 
-  // 1. words.length까지 반복해준다.
-  while (start < words.length) {
-    for (let i = 0; i < n; i++) {
-      if (
-        // 2. 이전에 값이 있었거나, 처음값이 아니면서 이전값의 마지막단어와 현재 첫단어가 다를경우 i+1, Math.ceil((start + i + 1) / n)을 출력해준다.
-        answer.includes(words[start + i]) ||
-        (answer.length !== 0 && answer[answer.length - 1].slice(-1) !== words[start + i][0])
-      ) {
-        result.push(i + 1, Math.ceil((start + i + 1) / n));
-        break;
-      }
-      answer.push(words[start + i]);
+  for (let idx = 1; idx < words.length; idx++) {
+    const currentWord = words[idx];
+
+    if (lastWord[lastWord.length - 1] !== currentWord[0] || set.has(currentWord)) {
+      return [(idx % n) + 1, Math.ceil((idx + 1) / n)];
     }
 
-    // 만약 2의 값을 찾았다면 break;
-    if (result.length !== 0) break;
-    // 그게 아니라면 +=n씩 증가해준다.
-    start += n;
+    set.add(currentWord);
+    lastWord = currentWord;
   }
 
-  // 만약 값이 없다면 [0,0] 출력
-  if (result.length === 0) return [0, 0];
-  return result;
-}
-
-solution(3, ['tank', 'kick', 'know', 'wheel', 'land', 'dream', 'mother', 'robot', 'tank']); // [3,3]
-solution(5, [
-  'hello',
-  'observe',
-  'effect',
-  'take',
-  'either',
-  'recognize',
-  'encourage',
-  'ensure',
-  'establish',
-  'hang',
-  'gather',
-  'refer',
-  'reference',
-  'estimate',
-  'executive',
-]); // [0,0]
-solution(2, ['hello', 'one', 'even', 'never', 'now', 'world', 'draw']); // [1,3]
-
-// 다른사람의 코드
-
-function solution(n, words) {
-  let answer = 0;
-  words.reduce((prev, now, idx) => {
-    answer = answer || (words.slice(0, idx).indexOf(now) !== -1 || prev !== now[0] ? idx : answer);
-    return now[now.length - 1];
-  }, '');
-
-  return answer ? [(answer % n) + 1, Math.floor(answer / n) + 1] : [0, 0];
+  return [0, 0];
 }
