@@ -76,6 +76,7 @@
 - [x] [개인정보 수집 유효기간](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EC%88%98%EC%A7%91%EC%9C%A0%ED%9A%A8%EA%B8%B0%EA%B0%84.js)
 - [x] [달리기 경주](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%8B%AC%EB%A6%AC%EA%B8%B0%EA%B2%BD%EC%A3%BC.js)
 - [x] [공원 산책](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EA%B3%B5%EC%9B%90%EC%82%B0%EC%B1%85.js)
+- [ ]
 
 ### Lv2
 
@@ -90,6 +91,8 @@
 - [x] [짝지어 제거하기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%A7%9D%EC%A7%80%EC%96%B4%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0.js)
 - [x] [카펫](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%B9%B4%ED%8E%AB.js)
 - [x] [점프와 순간이동](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%A0%90%ED%94%84%EC%99%80%EC%88%9C%EA%B0%84%EC%9D%B4%EB%8F%99.js)
+- [x] [구명 보트](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EA%B5%AC%EB%AA%85%EB%B3%B4%ED%8A%B8.js)
+- [x] [예상 대진표](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%98%88%EC%83%81%EB%8C%80%EC%A7%84%ED%91%9C.js)
 
 # 자료구조
 
@@ -219,8 +222,8 @@
 
 - [자바스크립트를 활용한 알고리즘 공부](#자바스크립트를-활용한-알고리즘-공부)
 - [프로그래머스 문제](#프로그래머스-문제)
-  - [Lv1](#lv1)
-  - [Lv2](#lv2)
+    - [Lv1](#lv1)
+    - [Lv2](#lv2)
 - [자료구조](#자료구조)
 - [꿀팁 저장소](#꿀팁-저장소)
 - [나만의 알고리즘](#나만의-알고리즘)

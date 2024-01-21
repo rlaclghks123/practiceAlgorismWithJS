@@ -1,70 +1,26 @@
-// 구명보트는 최대 2명밖에 탈수 없고, 무게제한도 있다.
-// 구명보트를 최대한 적게 사용하여 모든 사람을 구출
-// 사람들의 몸무게 people, 무게제한 limit
-// 모든 사람을 구출하기 위해 필요한 구명보트 개수의 최솟값을 return
-// 50,000명 이므로 2중 for문은 불가능
-// function solution(people, limit) {
-//   var answer = 0;
-//   people.sort((a, b) => b - a);
-
-//   let l = 0;
-//   let r = people.length - 1;
-
-//   while (l < r) {
-//     var sum = people[l] + people[r];
-//     if (sum > limit) {
-//       l++;
-//     } else {
-//       l++;
-//       r--;
-//     }
-//     answer++;
-//   }
-//   if (l == r) answer++;
-//   return answer;
-// }
-
-// function solution(people, limit) {
-//   var answer = 0;
-//   people.sort((a, b) => b - a);
-//   let left = 0;
-//   let right = people.length - 1;
-
-//   while (left < right) {
-//     let sum = people[left] + people[right];
-//     if (sum > limit) {
-//       left++;
-//     } else {
-//       left++;
-//       right--;
-//     }
-//     answer++;
-//   }
-//   if (left === right) answer++;
-//   console.log(answer);
-//   return answer;
-// }
+// 1. 오름차순으로 정렬한다.
+// 2. 투포인터 알고리즘을 통해 가장 왼쪽과 가장 오른쪽부터 시작하여 확인한다.
+// 3. 만약 가장 왼쪽값과 가장 오른쪽 값이 limit보다 작거나 같으면 2개의 투 포인터를 움직인다.(2명 구출 가능한 경우)
+// 4. 만약 가장 왼쪽값과 가장 오른쪽 값이 limit보다 크다면 가장 오른쪽값(무거운 사람)만 왼쪽으로 이동한다. (1명만 구출 가능한 경우)
+// 5. 이동 후 count해준다.
+// 6. 총 count된 값을 출력한다.
 
 function solution(people, limit) {
-  let [cnt, left, right] = [0, 0, people.length - 1];
+  let left = 0;
+  let right = people.length - 1;
+  let cnt = 0;
 
   people.sort((a, b) => a - b);
 
   while (left <= right) {
-    let sum = people[left] + people[right];
-
-    if (sum > limit) right--;
-    else {
+    if (people[left] + people[right] <= limit) {
       right--;
       left++;
+    } else if (people[left] + people[right] > limit) {
+      right--;
     }
-
     cnt++;
   }
+
   return cnt;
 }
-
-solution([70, 50, 80, 50], 100); //	3
-solution([70, 80, 50], 100); // 100	3
-solution([30, 30, 50, 10, 20, 30], 100); // 100	2
-solution([30, 100, 200, 70, 80, 50], 100); //	5
