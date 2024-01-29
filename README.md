@@ -77,6 +77,7 @@
 - [x] [달리기 경주](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%8B%AC%EB%A6%AC%EA%B8%B0%EA%B2%BD%EC%A3%BC.js)
 - [x] [공원 산책](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EA%B3%B5%EC%9B%90%EC%82%B0%EC%B1%85.js)
 - [x] [신고 결과 받기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EC%8B%A0%EA%B3%A0%EA%B2%B0%EA%B3%BC%EB%B0%9B%EA%B8%B0.js)
+- [x] [[PCCP 기출문제] 1번 / 붕대 감기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv1/%EB%B6%95%EB%8C%80%EA%B0%90%EA%B8%B0.js)
 
 ### Lv2
 
@@ -100,6 +101,7 @@
 - [x] [괄호 회전하기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EA%B4%84%ED%98%B8%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0.js)
 - [x] [n^2 배열 자르기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/n%5E2%EB%B0%B0%EC%97%B4%EC%9E%90%EB%A5%B4%EA%B8%B0.js)
 - [x] [할인행사](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%9D%98%EC%83%81.js)
+- [x] [h-index](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/hIndex.js)
 
 # 자료구조
 
@@ -229,8 +231,8 @@
 
 - [자바스크립트를 활용한 알고리즘 공부](#자바스크립트를-활용한-알고리즘-공부)
 - [프로그래머스 문제](#프로그래머스-문제)
-    - [Lv1](#lv1)
-    - [Lv2](#lv2)
+  - [Lv1](#lv1)
+  - [Lv2](#lv2)
 - [자료구조](#자료구조)
 - [꿀팁 저장소](#꿀팁-저장소)
 - [나만의 알고리즘](#나만의-알고리즘)
