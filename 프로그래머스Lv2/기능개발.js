@@ -1,52 +1,33 @@
-// 뒤에있는 기능이 먼저 개발되어도 앞에있는 기능이 배포될때 함께 배포됩니다.
-// 먼저 배포되어야 하는 순서대로 작업의 진도가 적힌 정수 배열 progresses와 각 작업의 개발 속도가 적힌 정수 배열 speeds가 주어질 때
-// 각 배포마다 몇 개의 기능이 배포되는지를 return
+// 1. progresses, speeds를 통해 배포까지 남은 날짜들을 담은 배열을 만들어준다.
+// 2. 남은 날짜를 담은 배열을 순회하면서 배포마다 몇 개의 기능이 배포되는지를 담아준다.
+// 2-1. 만약 최대 배포날짜가 현재 기능의 배포날보다 크거나 같다면 count해준다.
+// 2-2. 만약 최대 배포날짜가 현재 기능의 배포날보다 작다면
+// 2-2-1. 최대 배포날짜를 현재 기능의 배포날로 바꿔준다.
+// 2-2-2. 현재까지 count값을 ans에 담아준다.
+// 2-2-3. count값을 다시 1로 초기화 해준다.
+// 3. 마지막 count값을 ans에 담아준다.
+// 4. 총 count를 담은 배열을 출력한다.
 
 function solution(progresses, speeds) {
-  var answer = [];
-  let stack = [];
-  let count = 0;
+  const restDates = progresses.map((num, i) => Math.ceil((100 - num) / speeds[i]));
+  const result = [];
 
-  progresses.forEach((item, i) => {
-    const temp = Math.ceil((100 - item) / speeds[i]);
+  let max = restDates[0];
+  let count = 1;
 
-    if (stack.length === 0) stack.push(temp);
-    else if (stack[stack.length - 1] >= temp) {
+  restDates.slice(1).forEach((num) => {
+    if (max >= num) {
       count++;
-    } else {
-      count++;
-      answer.push(count);
-      stack = [temp];
-      count = 0;
+    }
+
+    if (max < num) {
+      max = num;
+      result.push(count);
+      count = 1;
     }
   });
-  if (stack.length !== 0) {
-    answer.push(count + 1);
-  }
 
-  return answer;
+  result.push(count);
+
+  return result;
 }
-
-solution([93, 30, 55], [1, 30, 5]); //	[2, 1]
-
-solution([95, 90, 99, 99, 80, 99], [1, 1, 1, 1, 1, 1]); //	[1, 3, 2]
-
-// 다른사람 코드
-// days에 배포일을 다 담아두고, 돌면서 비교하여 구해줬다.
-
-// function solution(progresses, speeds) {
-//   let answer = [0];
-//   let days = progresses.map((progress, index) => Math.ceil((100 - progress) / speeds[index]));
-//   let maxDay = days[0];
-
-//   for (let i = 0, j = 0; i < days.length; i++) {
-//     if (days[i] <= maxDay) {
-//       answer[j] += 1;
-//     } else {
-//       maxDay = days[i];
-//       answer[++j] = 1;
-//     }
-//   }
-
-//   return answer;
-// }
