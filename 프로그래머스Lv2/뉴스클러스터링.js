@@ -1,37 +1,41 @@
-// 1. 2글자씩 잘라서 문자인 경우만 찾아줍니다.  => slicedTwoWord
-// 2. 교집합(intersection), 합집합(union)을 구해서 두값을 나눠 65536으로 나눠줍니다. => getJaccardSimilarity
+// 1. 문자열을 2글자씩 잘라준다. 단 영문자만 가능
+
+// 2. 자카드 유사도를 구한다.
+// 2-1. 두 집합의 합집합 / 교집합으로 구한다.
+// 2-2. 원소의 중복을 허용하여 다중집합을 확장할 수 있다.
+// 2-2-1. 다중집합의 Math.min()을 통해 교집합과 Math.max()를 통해 합집합을 구하여 자카드 유사도를 구한다.
+
+// 3. 두 문자열에서 2글자씩 자른 문자열이 없다면 65536를 출력
+// 4. 두 문자열에서 2글자씩 자른 문자열이 있다면 자카드 유사도 * 65536를 출력
 
 function solution(str1, str2) {
-  return getJaccardSimilarity(slicedTwoWord(str1), slicedTwoWord(str2));
+  const str1Sliced = sliced(str1);
+  const str2Sliced = sliced(str2);
+
+  const sumSet = new Set([...str1Sliced, ...str2Sliced]);
+
+  let [union, intersection] = [0, 0];
+
+  [...sumSet].forEach((word) => {
+    let filtered1 = str1Sliced.filter((f) => word === f).length;
+    let filtered2 = str2Sliced.filter((f) => word === f).length;
+
+    union += Math.max(filtered1, filtered2);
+    intersection += Math.min(filtered1, filtered2);
+  });
+
+  return sumSet.size ? Math.floor((intersection / union) * 65536) : 65536;
 }
 
-function slicedTwoWord(str) {
+function sliced(str) {
   const result = [];
+
   for (let i = 0; i < str.length; i++) {
     const sliced = str
       .slice(i, i + 2)
       .toUpperCase()
       .replace(/[^A-Z]/, '');
-    if (sliced.trim('') !== '' && sliced.length === 2) result.push(sliced);
+    if (sliced.length === 2) result.push(sliced);
   }
   return result;
 }
-
-function getJaccardSimilarity(sliced1, sliced2) {
-  const set = new Set([...sliced1, ...sliced2]);
-  let [intersection, union] = [0, 0];
-
-  [...set].forEach((word) => {
-    let filtered1 = sliced1.filter((f) => word === f).length;
-    let filtered2 = sliced2.filter((f) => word === f).length;
-    intersection += Math.min(filtered1, filtered2);
-    union += Math.max(filtered1, filtered2);
-  });
-
-  return union === 0 ? 65536 : Math.floor((intersection / union) * 65536);
-}
-
-solution('FRANCE', 'french'); // 16384
-solution('handshake', 'shake hands'); // 65536
-solution('aa1+aa2', 'AAAA12'); // 43690
-solution('E=M*C^2', 'e=m*c^2'); // 65536
