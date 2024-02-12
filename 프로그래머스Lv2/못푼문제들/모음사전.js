@@ -1,32 +1,31 @@
-// 사전에 알파벳모음 A E I O U만을 사용하여 만들 수 있는 길이 5이하의 모든 단어가 수록되어 있습니다.
-// 사전에서 첫 단어는 A이고, 그다음은 AA ... 마지막 단어는 U입니다.
-// 단어 word는 몇번째 단어인지 return
+// 1. 사전 배열에 ['A','E','I','O','U']를 담아줍니다.
 
-// index가 한개만큼 5개가 있기 때문에 5의 i승을 더해준다.
-function sumNumber(num) {
-  let sum = 0;
-  for (let i = num; i >= 0; i--) {
-    sum += 5 ** i;
-  }
-  return sum;
-}
+// 2. dfs를 통해 깊이우선 탐색을 진행합니다.
+// 2-1. 만약 새로만든 str이 원하는 word와 같다면 ans을 cnt로 바꿔주고 return을 통해 탈출합니다.
+// 2-2. 만약 새로만든 str의 길이가 5가되면 탈출합니다.(그 이상은 불필요함)
+// 2-3. 새로만든 str에 새로운 문자를 더해서 dfs를 진행합니다.
+
+// 3. 최종 ans의 값을 출력합니다.
 
 function solution(word) {
-  let answer = 0;
-  // 사전에 사용하는 단어를 객체를 통해 값을 지정해준다.
-  const aeiou = { A: 0, E: 1, I: 2, O: 3, U: 4 };
+  const dictionary = ['A', 'E', 'I', 'O', 'U'];
+  let ans = 0;
+  let cnt = 0;
 
-  // word를 한단어씩 돌면서 점수를 더해준다.
-  [...word].forEach((item, i) => {
-    let val = aeiou[item];
-    answer += val * sumNumber(4 - i) + 1;
-  });
+  dfs('');
+  return ans;
 
-  return answer;
+  function dfs(str) {
+    if (str === word) {
+      ans = cnt;
+      return;
+    }
+
+    if (str.length === 5) return;
+
+    for (let i = 0; i < 5; i++) {
+      cnt++;
+      dfs(str + dictionary[i]);
+    }
+  }
 }
-
-solution('AAAAE'); //  6
-solution('AAAAU'); //  6
-solution('AAAE'); // 10
-solution('I'); // 1563
-solution('EIO'); // 1189
