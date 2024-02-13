@@ -1,25 +1,28 @@
-// 사용할 수 있는 숫자가 담긴 배열 numbers, 타겟 넘버 target이 매개변수로 주어질 때
-// 숫자를 적절히 더하고 빼서 타겟 넘버를 만드는 방법의 수를 return
+// dfs를 사용하여 풀었습니다.
+
+// 1. 현재값은 0, cnt는 0, idx는 0으로 시작합니다.
+
+// 2. dfs의 탈출조건은 idx가 numbers의 길이가 되면 탈출합니다.
+// 2-1. 탈출할 때 현재값이 target과 같다면 ans를 +1 해줍니다.(타겟넘버가 가능한 경우)
+
+// 3. 탈출하지 않았다면 현재값에 numbers[idx]값을 더하는 경우로 dfs를 탐색합니다.
+// 4. 탈출하지 않았다면 현재값에 numbers[idx]값을 빼는 경우로 dfs를 탐색합니다.
 
 function solution(numbers, target) {
-  let result = {
-    ans: 0,
-    target: target,
-    numbers: numbers,
-  };
+  let ans = 0;
+  dfs(0, 0, 0);
 
-  dfs(0, 0, result);
-  return result.ans;
-}
+  return ans;
 
-function dfs(cnt, sum, result) {
-  let { target, numbers } = result;
+  function dfs(cur, cnt, idx) {
+    if (idx === numbers.length) {
+      if (cur === target) {
+        ans++;
+      }
+      return;
+    }
 
-  if (cnt === numbers.length) {
-    if (sum === target) result.ans += 1;
-    return;
+    dfs(cur + numbers[idx], cnt + 1, idx + 1);
+    dfs(cur - numbers[idx], cnt + 1, idx + 1);
   }
-
-  dfs(cnt + 1, sum + numbers[cnt], result);
-  dfs(cnt + 1, sum - numbers[cnt], result);
 }

@@ -110,7 +110,9 @@
 - [x] [프로세스](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4.js)
 - [x] [피로도](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C%EB%93%A4/%ED%94%BC%EB%A1%9C%EB%8F%84.js)
 - [x] [뉴스클러스터링](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%89%B4%EC%8A%A4%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81.js)
-- [x] [전화번호 목록]()
+- [x] [전화번호 목록](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C%EB%93%A4/%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8%EB%AA%A9%EB%A1%9D.js)
+- [x] [타겟 넘버](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%ED%83%80%EA%B2%9F%EB%84%98%EB%B2%84.js)
+- [x] [k진수에서 소수개수 구하기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C%EC%86%8C%EC%88%98%EA%B0%9C%EC%88%98%EA%B5%AC%ED%95%98%EA%B8%B0.js)
 
 # 자료구조
 
