@@ -1,119 +1,44 @@
-// function solution(maps) {
-//   let answer = 0;
+// bfs를 통해 문제를 풀었습니다.
 
-//   // 동 서 남 북의 좌표를 기록해준다.
-//   let dx = [0, 0, 1, -1];
-//   let dy = [1, -1, 0, 0];
+// 1. 필요한 값들을 세팅합니다.
+// 1-1. 동서남북 위치를 이동하기 위해 dx,dy를 만들어줍니다. 동[1,0], 서[-1,0], 남[0,-1], 북[0,1]
+// 1-2. q를 통해 bfs를 진행하고, 0,0에서 시작하기 때문에 q에 [[0,0]]을 담아줍니다.
+// 1-3. 맵의 최대범위인 n,m을 구해줍니다.
+// 1-4. 방문처리를 위해 map크기만큼 visit을 만들어주고, 초기값을 -1로 세팅해줍니다.
 
-//   // 범위를 변수에 담아준다.
-//   let n = maps.length;
-//   let m = maps[0].length;
+// 2. 시작점인 0,0을 1로 방문처리해줍니다
 
-//   // 방문한 횟수를 처음엔 1로 초기화 해준다.
-//   let count = [...maps].map((item) => item.map(() => 1));
+// 3. bfs탐색을 시작합니다.
+// 3-1. 현재 위치를 shift해줍니다.
+// 3-2. 동서남북 방향으로 이동하기 위해 4번 반복해줍니다.
+// 3-2-1. 현재[x,y]값에 동서남북을 이동한 값을 찾아줍니다. x+dx[i], y+dy[i]
+// 3-2-2. if문을 통해 이동한 값이 범위안에 있는 경우만 처리해줍니다.
+// 3-2-3. 이동한 값이 maps에서 1이면서 방문하지 않은 경우만(visit[nx][ny]===-1) 처리해줍니다.
+// 3-2-4. 방문가능하다면 횟수를 증가시켜주고, q에 이동할 위치를 담아줍니다.
 
-//   // 큐에 시작점을 담아준다.
-//   let queue = [[0, 0]];
-
-//   // 큐에 값이 있다면 계속 반복해준다.
-//   while (queue.length) {
-//     // 큐에서 현재 위치를 뽑아줍니다.
-//     let [x, y] = queue.shift();
-
-//     // 동서남북 4방향으로 다음값을 찾아줍니다.
-//     for (let i = 0; i < 4; i++) {
-//       let nx = x + dx[i];
-//       let ny = y + dy[i];
-
-//       // 범위에 벗어나지 않고, 다음위치를 갈 수 있으며(maps===1) && 방문한적이 없다면(count===1)
-//       if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
-//         if (maps[nx][ny] === 1 && count[nx][ny] === 1) {
-//           // 방문했기 때문에 count를 해주고, 큐에 현재위치를 담아줍니다.
-//           count[nx][ny] = count[x][y] + 1;
-//           queue.push([nx, ny]);
-//         }
-//       }
-//     }
-//   }
-
-//   // 최종목표인 count[n-1][m-1]에 방문한적 없다면(===1) -1을 출력, 방문한적 있으면 방문한 횟수를 return 해줍니다.
-//   return count[n - 1][m - 1] === 1 ? -1 : count[n - 1][m - 1];
-// }
-
-// function solution(maps) {
-//   // 1. 남동북서 기준
-//   const dy = [1, 0, -1, 0];
-//   const dx = [0, 1, 0, -1];
-//   const row = maps.length;
-//   const col = maps[0].length;
-
-//   // 2.
-//   const visitCount = [...maps].map((r) => r.map((c) => 1));
-
-//   // 3.
-//   const queue = [[0, 0]]; //시작점
-
-//   // 4.
-//   while (queue.length) {
-//     const [y, x] = queue.shift();
-
-//     // 5.
-//     for (let i = 0; i < 4; i++) {
-//       const ny = y + dy[i];
-//       const nx = x + dx[i];
-
-//       // 6.
-//       if (ny >= 0 && nx >= 0 && ny < row && nx < col) {
-//         // 7.
-//         if (maps[ny][nx] === 1 && visitCount[ny][nx] === 1) {
-//           visitCount[ny][nx] = visitCount[y][x] + 1;
-//           queue.push([ny, nx]);
-//         }
-//       }
-//     }
-//   }
-
-//   return visitCount[row - 1][col - 1] === 1 ? -1 : visitCount[row - 1][col - 1];
-// }
+// 4. 원하는 위치인 n-1,m-1의 값을 출력합니다.
 
 function solution(maps) {
-  let dx = [0, 0, 1, -1];
-  let dy = [1, -1, 0, 0];
-  let n = maps.length;
-  let m = maps[0].length;
+  const dx = [0, 0, 1, -1];
+  const dy = [1, -1, 0, 0];
+  const q = [[0, 0]];
+  const [n, m] = [maps.length, maps[0].length];
+  const visit = Array.from({ length: n }, () => Array.from({ length: m }, () => -1));
 
-  let d = Array.from({ length: n }, () => Array.from({ length: m }, () => -1));
-
-  let q = [[0, 0]];
-  d[0][0] = 1;
+  visit[0][0] = 1;
 
   while (q.length) {
-    let [x, y] = q.shift();
+    const [x, y] = q.shift();
     for (let i = 0; i < 4; i++) {
-      let [nx, ny] = [x + dx[i], y + dy[i]];
-
-      if (0 <= nx && nx < n && ny >= 0 && ny < m) {
-        if (maps[nx][ny] === 1 && d[nx][ny] === -1) {
+      const [nx, ny] = [x + dx[i], y + dy[i]];
+      if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
+        if (maps[nx][ny] === 1 && visit[nx][ny] === -1) {
+          visit[nx][ny] = visit[x][y] + 1;
           q.push([nx, ny]);
-          d[nx][ny] = d[x][y] + 1;
         }
       }
     }
   }
-  return d[n - 1][m - 1];
-}
 
-solution([
-  [1, 0, 1, 1, 1],
-  [1, 0, 1, 0, 1],
-  [1, 0, 1, 1, 1],
-  [1, 1, 1, 0, 1],
-  [0, 0, 0, 0, 1],
-]); // 11
-solution([
-  [1, 0, 1, 1, 1],
-  [1, 0, 1, 0, 1],
-  [1, 0, 1, 1, 1],
-  [1, 1, 1, 0, 0],
-  [0, 0, 0, 0, 1],
-]); // -1
+  return visit[n - 1][m - 1];
+}
