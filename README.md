@@ -113,10 +113,13 @@
 - [x] [전화번호 목록](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C%EB%93%A4/%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8%EB%AA%A9%EB%A1%9D.js)
 - [x] [타겟 넘버](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%ED%83%80%EA%B2%9F%EB%84%98%EB%B2%84.js)
 - [x] [k진수에서 소수개수 구하기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C%EC%86%8C%EC%88%98%EA%B0%9C%EC%88%98%EA%B5%AC%ED%95%98%EA%B8%B0.js)
-- [x] [압축]()
-- [x] [n진수 게임]()
-- [x] [모음사전]()
-- [x] [게임 맵 최단거리]()
+- [x] [압축](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C%EB%93%A4/%5B3%EC%B0%A8%5D%EC%95%95%EC%B6%95.js)
+- [x] [n진수 게임](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%5B3%EC%B0%A8%5Dn%EC%A7%84%EC%88%98%EA%B2%8C%EC%9E%84.js)
+- [x] [모음사전](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C%EB%93%A4/%EB%AA%A8%EC%9D%8C%EC%82%AC%EC%A0%84.js)
+- [x] [게임 맵 최단거리](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EA%B2%8C%EC%9E%84%EB%A7%B5%EC%B5%9C%EB%8B%A8%EA%B1%B0%EB%A6%AC.js)
+- [x] [더 맵게](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C%EB%93%A4/%EB%8D%94%EB%A7%B5%EA%B2%8C.js)
+- [x] [주차 요금 계산](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EC%A3%BC%EC%B0%A8%EC%9A%94%EA%B8%88%EA%B3%84%EC%82%B0.js)
+- [x] [뒤에 있는 큰 수 찾기](https://github.com/rlaclghks123/practiceAlgorismWithJS/blob/master/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4Lv2/%EB%AA%BB%ED%91%BC%EB%AC%B8%EC%A0%9C%EB%93%A4/%EB%92%A4%EC%97%90%EC%9E%88%EB%8A%94%ED%81%B0%EC%88%98%EC%B0%BE%EA%B8%B0.js)
 
 # 자료구조
 
